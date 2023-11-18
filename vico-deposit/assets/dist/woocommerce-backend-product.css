@@ -1,0 +1,56 @@
+#woocommerce-product-data ul.wc-tabs .vicodin_deposit_options.vicodin_deposit_tab a::before {
+  font-family: Icons;
+  content: "\f09d";
+}
+
+#vicodin_deposits_tab_data .woocommerce_options_panel {
+  min-height: unset;
+}
+
+.button.vicodin-new-custom-plan, .button.vicodin-save-custom-plan {
+  line-height: 38px !important;
+}
+
+.vicodin-plan-schedule tbody td {
+  padding: 0 10px;
+  height: 80px;
+}
+.vicodin-plan-schedule tbody td input, .vicodin-plan-schedule tbody td select {
+  width: 100% !important;
+  min-width: unset !important;
+}
+.vicodin-plan-schedule tfoot td {
+  padding-top: 1em;
+}
+.vicodin-plan-schedule .partial-actions {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: space-between;
+}
+.vicodin-plan-schedule .partial-actions span {
+  padding: 5px;
+  cursor: pointer;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.blockUI.blockOverlay.vicodin-loader {
+  position: relative;
+}
+.blockUI.blockOverlay.vicodin-loader::before {
+  opacity: 0.7;
+  z-index: 100;
+}
+.blockUI.blockOverlay.vicodin-loader::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/*# sourceMappingURL=woocommerce-backend-product.css.map */
