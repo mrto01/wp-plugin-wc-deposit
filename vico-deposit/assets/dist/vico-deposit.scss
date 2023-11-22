@@ -16,6 +16,7 @@
 }
 
 .vicodin-schedule, .vicodin-price-range {
+  text-align: left;
   input {
     width: 100px !important;
   }
@@ -24,7 +25,6 @@
     > div {
       display: flex;
       column-gap: 15px;
-      justify-content: flex-end;
       align-items: center;
     }
   }

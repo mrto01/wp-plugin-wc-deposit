@@ -164,7 +164,7 @@ class Deposit_Plan {
 <!--                <div class="vi-ui button">--><?php //esc_html_e( 'Apply for all',
 //						'vico-deposit-and-installment' ); ?><!--</div>-->
 <!--            </div>-->
-            <div class="field twelve wide">
+            <div class="field">
                 <table class="vi-ui table segments vicodin-schedule">
                     <thead>
                     <tr>
@@ -301,7 +301,7 @@ class Deposit_Plan {
 		$data    = json_decode( $data, true );
 		$plan_id = $data['plan-id'] ?? null;
 
-		$existPlans = get_option( 'vicodin_payment_plan' );
+		$existPlans = get_option( 'vicodin_payment_plan', array() );
 
 
 		if ( $plan_id ) {

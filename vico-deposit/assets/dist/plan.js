@@ -123,6 +123,7 @@ jQuery(document).ready(function ($) {
         if (confirm(warningMess)) {
             let id = $(this).data('id');
             vicodin.deletePlan(id);
+            $(this).closest('tr').remove();
         }
     }
 
@@ -320,8 +321,12 @@ jQuery(document).ready(function ($) {
             type: 'post',
             dataType: 'html',
             data: data,
-            beforeSend: vicodin.loadAnimation,
-            success: vicodin.loadDocument
+            beforeSend: function () {
+                $('.vi-ui.table').addClass('form loading');
+            },
+            success: function () {
+                $('.vi-ui.table').removeClass('form loading');
+            }
         })
     }
 

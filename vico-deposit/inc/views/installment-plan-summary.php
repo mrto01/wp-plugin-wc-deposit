@@ -42,13 +42,14 @@ $is_admin = $admin ?? is_admin();
 			foreach ( $schedule as $count => $payment ) {
 				if(isset($payment['id']) && !empty($payment['id'])) $partial_payment = wc_get_order($payment['id']);
 				if( !$partial_payment ) continue;
+
 				$payment_id = $main_id . '-' . ++$count;
 				$payment_date = date_i18n( wc_date_format(), strtotime( $payment['date'] ) );
 				$status = $partial_payment->get_status();
                 $status_name = wc_get_order_status_name( $status );
                 $payment_method = $partial_payment->get_payment_method_title();
 				$amount = $partial_payment->get_total();
-				$price_args = array('currency' => $partial_payment->get_currency());
+				$price_args = array('currency' => $partial_payment->get_currency(), 'decimals' => wc_get_price_decimals() );
                 $amount = wc_price( $amount, $price_args );
 
                 $checkout_url = $partial_payment->get_checkout_payment_url();

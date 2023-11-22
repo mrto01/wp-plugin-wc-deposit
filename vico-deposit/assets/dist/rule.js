@@ -42,7 +42,31 @@ jQuery(document).ready(function ($) {
                     vicodin_rule.loadDocument(data);
                     vicodin_rule.addRuleListEvents();
                 },
-                error: function (err) {
+                error: function (xhr, status, err) {
+                    console.log(err)
+                },
+                complete: function () {
+
+                }
+            });
+        },
+        sortRuleList: function (list) {
+            $.ajax({
+                url: vicodinParams.ajaxUrl,
+                type: 'post',
+                dataType: 'text',
+                data: {
+                    '_ajax_nonce': vicodinParams.nonce,
+                    'action': 'vicodin_sort_rule_list',
+                    'data': list
+                },
+                beforeSend: function () {
+                    $('.vi-ui.table').addClass('form loading');
+                },
+                success: function (data) {
+                    $('.vi-ui.table').removeClass('form loading');
+                },
+                error: function (xhr, status, err) {
                     console.log(err)
                 },
                 complete: function () {
@@ -53,6 +77,14 @@ jQuery(document).ready(function ($) {
         addRuleListEvents: function () {
             $('#vicodin-rule-sortable').sortable({
                 cursor: 'move',
+                update: function (event, ui) {
+                    let list = [];
+                    $(this).children().each(function () {
+                        let rule_id = $(this).data('rule_id');
+                        list.push(rule_id);
+                    });
+                    vicodin_rule.sortRuleList(JSON.stringify(list));
+                }
             });
             $('.button.vicodin-new-rule').on('click', function () {
                 $(this).attr('href', '#/new-rule');
@@ -61,7 +93,9 @@ jQuery(document).ready(function ($) {
                 let warningMess = wp.i18n.__('Would you want to remove this rule?', 'vico-deposit-and-installment');
                 if (confirm(warningMess)) {
                     let id = $(this).data('id');
-                    vicodin_rule.deleteRule(id)
+                    vicodin_rule.deleteRule(id);
+
+                    $(this).closest('tr').remove();
                 }
             });
             $('.vicodin-rule-enable').on('change', function () {
@@ -216,10 +250,11 @@ jQuery(document).ready(function ($) {
                     'action': 'vicodin_delete_rule',
                     'rule-id': id
                 },
-                beforeSend: vicodin_rule.loadAnimation,
+                beforeSend: function () {
+                    $('.vi-ui.table').addClass('form loading');
+                },
                 success: function (data) {
-                    vicodin_rule.loadDocument(data);
-                    vicodin_rule.addRuleListEvents();
+                    $('.vi-ui.table').removeClass('form loading');
                 },
                 error: function (err) {
                     console.log(err)

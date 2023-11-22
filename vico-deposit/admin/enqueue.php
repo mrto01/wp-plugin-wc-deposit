@@ -110,9 +110,10 @@ class Enqueue {
 				$localize_script = 'woocommerce-backend-product';
 				break;
 			case 'shop_order':
-				$enqueue_styles = [ 'icon', 'woocommerce-backend-order' ];
-				$enqueue_scripts = [ 'woocommerce-backend-order' ];
-				$localize_script = 'woocommerce-backend-order';
+			case 'woocommerce_page_wc-orders':
+				$enqueue_styles     = [ 'icon', 'woocommerce-backend-order' ];
+				$enqueue_scripts    = [ 'woocommerce-backend-order' ];
+				$localize_script    = 'woocommerce-backend-order';
 				break;
 
 		}

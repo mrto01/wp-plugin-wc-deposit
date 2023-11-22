@@ -16,7 +16,7 @@ class Deposit_Rule {
 			array( $this, 'delete_rule' ) );
 		add_action( 'wp_ajax_vicodin_update_rule',
 			array( $this, 'update_rule' ) );
-        add_action( 'wp_ajax_vicodin_sort_rule', array( $this, 'sort_rule' ) );
+        add_action( 'wp_ajax_vicodin_sort_rule_list', array( $this, 'sort_rule_list' ) );
 	}
 
 	public static function instance() {
@@ -57,7 +57,7 @@ class Deposit_Rule {
 			if ( isset ( $rules[ $rule_id ] ) ) {
 				$rule = $rules[ $rule_id ];
 			} else {
-				wp_die( 'Plan not found!', 'Error',
+				wp_die( 'Rule not found!', 'Error',
 					array( 'response' => 404 ) );
 			}
 		} else {
@@ -432,7 +432,7 @@ class Deposit_Rule {
 		$data    = json_decode( $data, true );
 		$rule_id = $data['rule-id'] ?? null;
 
-		$exist_rules = get_option( 'vicodin_deposit_rule' );
+		$exist_rules = get_option( 'vicodin_deposit_rule', array() );
 
 		if ( $rule_id ) {
 			$exist_rules[ $rule_id ] = $data;
@@ -461,7 +461,7 @@ class Deposit_Rule {
 	}
 
 	public function get_home() {
-
+		$rules = get_option( 'vicodin_deposit_rule' );
 		?>
         <div class="vico-deposit wrapper">
             <h2><?php esc_attr_e( 'Manage Deposit Rules',
@@ -469,6 +469,7 @@ class Deposit_Rule {
             <a href="#/new-rule"
                class="vi-ui button primary vicodin-new-rule"><?php esc_attr_e( 'New Rule',
 					'vico-deposit-and-installment' ); ?></a>
+        <?php if ( ! empty( $rules ) ) { ?>
             <table class="vi-ui table">
                 <thead>
                 <tr>
@@ -484,12 +485,10 @@ class Deposit_Rule {
                 </thead>
                 <tbody id="vicodin-rule-sortable">
 				<?php
-				$rules = get_option( 'vicodin_deposit_rule' );
-				if ( ! empty( $rules ) ) {
 					foreach ( $rules as $rule_id => $rule ) {
-						if ( $rule_id !== 'default' ) {
+						if ( $rule['rule-id'] !== 'default' ) {
 							?>
-                            <tr>
+                            <tr data-rule_id="<?php esc_attr_e( $rule['rule-id'] ); ?>">
                                 <td><i class="icon arrows alternate"></i></td>
                                 <td><?php echo esc_html( $rule['rule-name'] ) ?></td>
                                 <td><?php echo esc_html( $rule['rule-apply-for'] ) ?></td>
@@ -500,8 +499,7 @@ class Deposit_Rule {
                                                name="rule-active"
                                                class="vicodin-rule-enable"
                                                data-id="<?php echo esc_attr( $rule['rule-id'] ) ?>"
-											<?php echo $rule['rule-active']
-												? 'checked' : '' ?>>
+											<?php echo $rule['rule-active'] ? 'checked' : '' ?>>
                                         <label></label>
                                     </div>
                                 </td>
@@ -519,7 +517,7 @@ class Deposit_Rule {
 							<?php
 						}
 					}
-				}
+
 				?>
 
                 <tfoot>
@@ -550,6 +548,10 @@ class Deposit_Rule {
                 </tr>
                 </tfoot>
             </table>
+            <?php }else {
+                $text = __( 'Not found any rule in database', 'vico-deposit-and-installment' );
+                echo '<h2>'.print_r( $text ,true).'</h2>';
+            } ?>
         </div>
 		<?php
 		wp_die();
@@ -580,7 +582,42 @@ class Deposit_Rule {
 		wp_die();
 	}
 
-    public function sort_rule() {
+    public function sort_rule_list() {
 
+        if ( !isset( $_POST['data'] ) ) {
+            return;
+        }
+
+        $list = json_decode( $_POST['data'] );
+        if ( !is_array( $list ) ) {
+            return;
+        }
+
+	    $existRules = get_option( 'vicodin_deposit_rule',true );
+	    $list       = array_map('absint', $list );
+        $default = $existRules['default'];
+        unset( $existRules['default'] );
+
+	    uasort($existRules, function ($a, $b) use ($list) {
+		    $positionA = array_search($a['rule-id'], $list);
+		    $positionB = array_search($b['rule-id'], $list);
+
+		    if ($positionA === false && $positionB === false) {
+			    return 0;
+		    } elseif ($positionA === false) {
+			    return 1;
+		    } elseif ($positionB === false) {
+			    return -1;
+		    }
+
+		    return $positionA - $positionB;
+	    });
+        $existRules['default'] = $default;
+
+        update_option( 'vicodin_deposit_rule', $existRules );
+
+        echo 'sort rules success!';
+
+        wp_die();
     }
 }

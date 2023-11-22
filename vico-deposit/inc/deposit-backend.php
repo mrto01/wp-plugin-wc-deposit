@@ -9,10 +9,18 @@ use Automattic\WooCommerce\Internal\DataStores\Orders\CustomOrdersTableControlle
 defined( 'ABSPATH' ) || exit;
 
 class Deposit_Backend {
+	public $slug;
+
+	public $dist_url;
+
 	protected static $instance = null;
 
 	public function __construct() {
-		if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+
+		$this->slug = VICODIN_CONST['slug'];
+		$this->dist_url = VICODIN_CONST['dist_url'];
+
+		if ( vicodin_check_wc_active() ) {
 			add_filter( 'woocommerce_email_classes',
 				array( $this, 'vicodin_email_classes' ) );
 			add_filter( 'woocommerce_product_data_tabs',
@@ -47,7 +55,6 @@ class Deposit_Backend {
 
 		return $email;
 	}
-
 	public function woocommerce_deposit_tab( $tabs ) {
 		$tabs['vicodin_deposit'] = array(
 			'label'    => __( 'Deposit', 'vico-deposit-and-installment' ),
@@ -203,16 +210,12 @@ class Deposit_Backend {
 
 		$completed_ids = $_POST['vicodin_partial_payment_completed'];
 		$args = array(
-			'post_parent' => $post_id,
-			'post_type'   => 'vwcdi_partial_order',
-			'numberposts' => -1,
-			'meta_query'  => array(
-				array(
-					'key'     => '_order_parent_id',
-					'value'   => $post_id,
-					'compare' => '=',
-				),
-			),
+			'post_parent'   => $post_id,
+            'post_order_id' => $post_id,
+			'post_type'     => 'vwcdi_partial_order',
+			'numberposts'   => -1,
+			'orderby'       => 'ID',
+			'order'         => 'ASC',
 		);
         $suborders = wc_get_orders( $args );
 

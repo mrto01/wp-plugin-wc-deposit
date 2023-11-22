@@ -47,3 +47,15 @@ if ( ! function_exists( 'vicodin_get_due_amount' ) ) {
 		return floatval($amount) * floatval($price) / 100;
 	}
 }
+
+if ( ! function_exists( 'vicodin_check_wc_active' ) ) {
+	function vicodin_check_wc_active( ) {
+		if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins') ) ) ){
+			return true;
+		}else {
+			return false;
+		}
+	}
+}
+
+

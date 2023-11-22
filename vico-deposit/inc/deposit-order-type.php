@@ -11,7 +11,9 @@ class Deposit_Order_Type {
 	public function __construct() {
 		add_action( 'init', array( $this, 'register_order_type' ) );
 		add_action( 'init', array( $this, 'register_order_status' ) );
-		add_filter('wc_order_statuses', array( $this, 'add_custom_order_status_to_order_statuses' ) );
+		if ( vicodin_check_wc_active() ) {
+			add_filter('wc_order_statuses', array( $this, 'add_custom_order_status_to_order_statuses' ) );
+		}
 	}
 
 	public static function instance() {
@@ -25,6 +27,9 @@ class Deposit_Order_Type {
 	function register_order_type(){
 
 		$post_type = VICODIN_CONST['order_type'];
+		if ( !function_exists( 'wc_register_order_type' ) ) {
+			return;
+		}
 		wc_register_order_type(
 			$post_type,
 			array(
@@ -45,7 +50,7 @@ class Deposit_Order_Type {
 				'map_meta_cap' => true,
 				'publicly_queryable' => false,
 				'exclude_from_search' => true,
-				'show_in_menu' =>  false,
+				'show_in_menu' =>  true,
 				'hierarchical' => false,
 				'show_in_nav_menus' => false,
 				'rewrite' => false,
@@ -59,7 +64,7 @@ class Deposit_Order_Type {
 				'exclude_from_order_webhooks' => true,
 				'exclude_from_order_reports' => true,
 				'exclude_from_order_sales_reports' => true,
-				'class_name' => 'WC_Order',
+				'class_name' => 'VicoDIn\Inc\Partial_Order',
 			)
 
 		);
@@ -70,6 +75,9 @@ class Deposit_Order_Type {
 	}
 
 	function register_order_status() {
+		if ( !function_exists( 'register_post_status' ) ){
+			return;
+		}
 		register_post_status('wc-installment', array(
 			'label' => _x('Installment', 'Order status', 'vico-deposit-and-installment' ),
 			'public' => true,
