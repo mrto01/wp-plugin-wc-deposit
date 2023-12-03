@@ -15,7 +15,7 @@ class Deposit_Admin {
 	}
 
 	public static function instance() {
-		if ( self::$instance == null ) {
+		if ( null == self::$instance ) {
 			self::$instance = new self();
 		}
 
@@ -27,7 +27,7 @@ class Deposit_Admin {
 		add_menu_page(
 			esc_html__( 'Vico Deposit', 'vico-deposit-and-installment' ),
 			esc_html__( 'Vico Deposit', 'vico-deposit-and-installment' ),
-			'manage_woocommerce',
+			'manage_options',
 			'vicodin_menu',
 			null,
 			VICODIN_CONST['img_url'] . '/deposit.png',
@@ -38,7 +38,7 @@ class Deposit_Admin {
 			'vicodin_menu',
 			esc_html__( 'Payment Plans', 'vico-deposit-and-installment' ),
 			esc_html__( 'Payment Plans', 'vico-deposit-and-installment' ),
-			'manage_woocommerce',
+			'manage_options',
 			'vicodin_menu',
 			array( 'VicoDIn\Admin\Deposit_Plan', 'page_callback' )
 		);
@@ -47,7 +47,7 @@ class Deposit_Admin {
 			'vicodin_menu',
 			esc_html__( 'Deposit Rules', 'vico-deposit-and-installment' ),
 			esc_html__( 'Deposit Rules', 'vico-deposit-and-installment' ),
-			'manage_woocommerce',
+			'manage_options',
 			'vicodin_rule',
 			array( 'VicoDIn\Admin\Deposit_Rule', 'page_callback' )
 		);
@@ -56,7 +56,7 @@ class Deposit_Admin {
 			'vicodin_menu',
 			esc_html__( 'Settings', 'vico-deposit-and-installment' ),
 			esc_html__( 'Settings', 'vico-deposit-and-installment' ),
-			'manage_woocommerce',
+			'manage_options',
 			'vicodin_setting',
 			array( 'VicoDIn\Admin\Deposit_Setting', 'page_callback' )
 		);

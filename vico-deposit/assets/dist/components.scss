@@ -11,10 +11,14 @@
 }
 
 .wrapper.vico-deposit {
-  margin: 20px auto;
-
-  &.loading {
-
+  margin-top:10px;
+  margin-right:20px;
+  & > h2 {
+    font-size: 23px;
+    font-weight: 400;
+    margin: 0;
+    padding: 9px 0 9px;
+    line-height: 1.3;
   }
 }
 

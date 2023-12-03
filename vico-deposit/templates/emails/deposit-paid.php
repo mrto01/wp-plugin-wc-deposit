@@ -5,9 +5,9 @@ defined( 'ABSPATH' ) || exit;
 do_action('woocommerce_email_header', $email_heading, $email);
 ?>
 
-<p><?php printf( esc_html__( $email_text, 'vico-deposit-and-installment')) ?></p>
+<p><?php echo esc_html( $email_text ) ?></p>
 
-<p><?php echo wp_kses_post( wpautop( wptexturize( __( $payment_text, 'deposits-partial-payments-for-woocommerce' ) ) ) ); ?></p>
+<p><?php echo wp_kses_post( wpautop( wptexturize( $payment_text ) ) ); ?></p>
 
 <?php
 

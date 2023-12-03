@@ -1,4 +1,4 @@
-@import 'components';
+@import 'components.css';
 
 .vicodin-sticky {
   position: sticky;
@@ -21,4 +21,8 @@
       background-color: var(--admin-bg);
     }
   }
+}
+
+.vi-ui.top.attached.tabular.menu {
+  margin-top: 0;
 }

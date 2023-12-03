@@ -139,7 +139,7 @@
     display: none !important;
   }
 
-  input[name="vicodin-plan-select"]:checked ~ .vicodin-plan-schedule{
+  input[name="vicodin-plan-select"]:checked ~ .vicodin-plan_schedule{
     display:table;
   }
   input[name="vicodin-plan-select"]:checked ~ .vicodin-plan-summary .vicodin-select {
@@ -173,14 +173,14 @@
 
   .vicodin-plan-info {
     cursor: pointer;
-    .vicodin-plan-name {
+    .vicodin-plan_name {
       margin:0;
       font-size: 20px;
       font-weight:500;
     }
   }
 
-  .vicodin-plan-schedule {
+  .vicodin-plan_schedule {
     display:none;
     width: 100%;
     border-collapse: collapse;

@@ -41,41 +41,48 @@ class Deposit_Plan {
 			} else {
 				return esc_attr( 'vicodin_params[' . $field . ']' );
 			}
-
 		} else {
 			return '';
 		}
 	}
 
 	public function get_plan() {
+		if ( ! ( isset( $_GET['nonce'] ) && wp_verify_nonce( sanitize_key( $_GET['nonce'] ), 'vicodin_nonce' ) )
+		) {
+			wp_die();
+		}
 		$payment_plans = get_option( 'vicodin_payment_plan' );
-		$plan_id       = $_GET['plan-id'] ?? '';
+        $plan_id       = '';
+        if ( isset( $_GET['plan_id'] ) ) {
+		    $plan_id   = sanitize_text_field( wp_unslash( $_GET['plan_id'] ) );
+        }
 		$plan          = [];
 		if ( $plan_id ) {
 			if ( isset( $payment_plans[ $plan_id ] ) ) {
 				$plan = $payment_plans[ $plan_id ];
 			} else {
-				wp_die( 'Plan not found!', 'Error',
-					array( 'response' => 404 ) );
+                $message = __( 'Plan not found!', 'vico-deposit-and-installment');
+				echo '<h2>' . esc_html( $message ) . '</h2>';
+                wp_die();
 			}
 		} else {
 			$plan = [
-				'plan-id'          => '',
-				'plan-name'        => '',
-				'plan-active'      => true,
-				'plan-description' => '',
+				'plan_id'          => '',
+				'plan_name'        => '',
+				'plan_active'      => true,
+				'plan_description' => '',
 				'deposit'          => '',
-				'deposit-fee'      => '',
-				'plan-schedule'    => array(
+				'deposit_fee'      => '',
+				'plan_schedule'    => array(
 					[
 						'partial'   => '',
 						'after'     => '',
-						'date-type' => 'day',
+						'date_type' => 'day',
 						'fee'       => ''
 					]
 				),
 				'duration'         => '',
-				'total'    => 0
+				'total'            => 0
 			];
 		}
 
@@ -85,10 +92,9 @@ class Deposit_Plan {
                 <i class="angle double left icon"></i>
             </a>
 			<?php
-			if ( empty( $plan['plan-name'] ) ) {
+			if ( empty( $plan['plan_name'] ) ) {
 				?>
-                <h2><?php esc_attr_e( 'Add new plan',
-						'vico-deposit-and-installment' ); ?></h2>
+                <h2><?php esc_attr_e( 'Add new plan', 'vico-deposit-and-installment' ); ?></h2>
 				<?php
 			} else {
 				?>
@@ -104,35 +110,35 @@ class Deposit_Plan {
             </button>
         </div>
         <form action="" class="vi-ui form segments">
-            <input type="hidden" name="plan-id"
-                   value="<?php echo esc_attr( $plan['plan-id'] ) ?>">
+            <input type="hidden" name="plan_id"
+                   value="<?php echo esc_attr( $plan['plan_id'] ) ?>">
             <div class="field">
-                <label for="plan-name"><?php esc_html_e( 'Plan name',
+                <label for="plan_name"><?php esc_html_e( 'Plan name',
 						'vico-deposit-and-installment' ); ?></label>
                 <input type="text"
-                       name="plan-name"
-                       id="plan-name"
-                       value="<?php echo esc_attr( $plan['plan-name'] ) ?>"
+                       name="plan_name"
+                       id="plan_name"
+                       value="<?php echo esc_attr( $plan['plan_name'] ) ?>"
                 >
             </div>
             <div class="field four wide">
-                <label for="plan-active"><?php esc_html_e( 'Active plan',
+                <label for="plan_active"><?php esc_html_e( 'Active plan',
 						'vico-deposit-and-installment' ); ?></label>
                 <div class="vi-ui toggle checkbox">
                     <input type="checkbox" tabindex="0" class="hidden"
-                           name="plan-active"
-                           id="plan-active"
-						<?php echo $plan['plan-active'] ? 'checked' : ''; ?>
+                           name="plan_active"
+                           id="plan_active"
+						<?php echo $plan['plan_active'] ? 'checked' : ''; ?>
                     >
-                    <label for="plan-active"></label>
+                    <label for="plan_active"></label>
                 </div>
             </div>
             <div class="field">
-                <label for="plan-description"><?php esc_html_e( 'Plan description' ); ?></label>
+                <label for="plan_description"><?php esc_html_e( 'Plan description' ); ?></label>
                 <textarea
-                        name="plan-description"
-                        id="plan-description" cols="30"
-                        rows="5"><?php esc_html( $plan['plan-description'] ) ?></textarea>
+                        name="plan_description"
+                        id="plan_description" cols="30"
+                        rows="5"><?php esc_html( $plan['plan_description'] ) ?></textarea>
             </div>
             <div class="field">
                 <label> <?php esc_html_e( 'Plan schedule',
@@ -195,7 +201,7 @@ class Deposit_Plan {
 		                                    'vico-deposit-and-installment' ); ?></span>
                                 <input type="number"
                                        name="partial-fee"
-                                       value="<?php echo esc_attr( $plan['deposit-fee'] ) ?>">
+                                       value="<?php echo esc_attr( $plan['deposit_fee'] ) ?>">
                                 <span class="type-unit">%</span>
                             </div>
                         </td>
@@ -203,11 +209,11 @@ class Deposit_Plan {
                     </tr>
 		            <?php
 		            $date_types = [
-			            'day'   => 'Day(s)',
-			            'month' => 'Month(s)',
-			            'year'  => 'Year(s)'
+			            'day'   => __( 'Day(s)', 'vico-deposit-and-installment'),
+			            'month' => __( 'Month(s)', 'vico-deposit-and-installment'),
+			            'year'  => __( 'Year(s)', 'vico-deposit-and-installment')
 		            ];
-		            foreach ( $plan['plan-schedule'] as $partial ) {
+		            foreach ( $plan['plan_schedule'] as $pos => $partial ) {
 			            ?>
                         <tr>
                             <td>
@@ -227,15 +233,11 @@ class Deposit_Plan {
                                             id="partial_date"
                                             class="vi-ui dropdown">
 							            <?php
-							            foreach ( $date_types as $key => $type )
-							            {
+							            foreach ( $date_types as $key => $type ) {
 								            ?>
                                             <option value="<?php echo esc_attr( $key ) ?>"
-									            <?php echo ( $key
-									                         == $partial['date-type'] )
-										            ? 'selected' : '' ?>>
-									            <?php esc_html_e( $type,
-										            'vico-deposit-and-installment' ); ?>
+									            <?php echo ( $key == $partial['date_type'] ) ? 'selected' : '' ?> >
+									            <?php echo esc_html( $type ); ?>
                                             </option>
 								            <?php
 							            }
@@ -253,13 +255,11 @@ class Deposit_Plan {
                                 </div>
                             </td>
                             <td>
-                                <div class="vi-ui circular button icon decrease-field <?php echo ( count( $plan['plan-schedule'] )
-					                                                                               === 1 )
+                                <div class="vi-ui circular button icon decrease-field <?php echo ( count( $plan['plan_schedule'] ) === 1 )
 						            ? 'hidden' : '' ?>">
                                     <i class="minus icon"></i>
                                 </div>
-                                <div class="vi-ui circular button icon increase-field <?php echo( $partial
-					                                                                              === end( $plan['plan-schedule'] )
+                                <div class="vi-ui circular button icon increase-field <?php echo( count( $plan['plan_schedule'] ) === ++$pos
 						            ? '' : 'hidden' ) ?>">
                                     <i class="plus icon"></i>
                                 </div>
@@ -299,35 +299,56 @@ class Deposit_Plan {
 
 		$data    = sanitize_text_field( wp_unslash( $_POST['data'] ) );
 		$data    = json_decode( $data, true );
-		$plan_id = $data['plan-id'] ?? null;
+		$plan_id = $data['plan_id'] ?? null;
 
-		$existPlans = get_option( 'vicodin_payment_plan', array() );
+		$exist_plans = get_option( 'vicodin_payment_plan', array() );
 
 
 		if ( $plan_id ) {
-			$existPlans[ $plan_id ] = $data;
+			$exist_plans[ $plan_id ] = $data;
 		} else {
 			$plan_id = get_option( 'vicodin_id' ) ?? 2;
 			$plan_id ++;
-			$data['plan-id']        = $plan_id;
-			$existPlans[ $plan_id ] = $data;
+			$data['plan_id']        = $plan_id;
+			$exist_plans[ $plan_id ] = $data;
 			update_option( 'vicodin_id', $plan_id );
 		}
 
-		update_option( 'vicodin_payment_plan', $existPlans );
+		update_option( 'vicodin_payment_plan', $exist_plans );
 
-		echo json_encode( $plan_id );
+		wp_send_json_success( $plan_id );
 
 		wp_die();
 	}
 
 	public function delete_plan() {
-		$existPlans = get_option( 'vicodin_payment_plan' );
-		if ( isset( $_POST['plan-id'] ) ) {
-			unset( $existPlans[ $_POST['plan-id'] ] );
-			update_option( 'vicodin_payment_plan', $existPlans );
+		if ( ! ( isset( $_POST['nonce'], $_POST['plan_id'] )
+		         && wp_verify_nonce( sanitize_key( $_POST['nonce'] ),
+				'vicodin_nonce' ) )
+		) {
+			return;
 		}
-		self::get_home();
+		$exist_plans = get_option( 'vicodin_payment_plan' );
+        $plan_id = sanitize_text_field( wp_unslash( $_POST['plan_id'] ) );
+        unset( $exist_plans[ $plan_id ] );
+        update_option( 'vicodin_payment_plan', $exist_plans );
+        $rules = get_option( 'vicodin_deposit_rule' );
+        foreach ( $rules as $key => $rule ) {
+            $index = array_search( $plan_id, $rule['payment_plans'] );
+
+            if ( false !== $index ) {
+                array_splice( $rule['payment_plans'], $index, 1 );
+                $rules[ $key ]['payment_plans'] = $rule['payment_plans'];
+                $rule_plan_names = array();
+
+                foreach ( $rule['payment_plans'] as $plan ) {
+                    $rule_plan_names[] = $exist_plans[ $plan ]['plan_name'];
+                }
+                $rules[ $key ]['rule_plan_names'] = implode(', ', $rule_plan_names);
+            }
+        }
+        update_option( 'vicodin_deposit_rule', $rules );
+		wp_die();
 	}
 
 	public function get_home() {
@@ -354,25 +375,25 @@ class Deposit_Plan {
 				foreach ( $payment_plans as $plan ) {
 					?>
                     <tr>
-                        <td><?php esc_html_e( $plan['plan-name'] ); ?></td>
-                        <td><?php esc_html_e( $plan['duration'] ); ?></td>
+                        <td><?php echo esc_html( $plan['plan_name'] ); ?></td>
+                        <td><?php echo esc_html( $plan['duration'] ); ?></td>
                         <td>
                             <div class="vi-ui toggle checkbox">
-                                <input type="checkbox" name="plan-active"
-                                       id="vicodin-enable" <?php echo $plan['plan-active']
+                                <input type="checkbox" name="plan_active"
+                                       id="vicodin-enable" <?php echo $plan['plan_active']
 									? 'checked' : '' ?>
-                                       data-id="<?php echo esc_attr( $plan['plan-id'] ) ?>"
+                                       data-id="<?php echo esc_attr( $plan['plan_id'] ) ?>"
                                        class="vicodin-plan-enable">
                                 <label></label>
                             </div>
                         </td>
                         <td class="right aligned">
-                            <a href="#/plan/<?php echo $plan['plan-id'] ?>"
+                            <a href="#/plan/<?php echo esc_attr( $plan['plan_id'] ) ?>"
                                class="vi-ui circular primary icon button vicodin-edit-plan">
                                 <i class="edit icon"></i>
                             </a>
                             <button class="vi-ui circular red icon button vicodin-delete-plan mr-1 ml-1"
-                                    data-id="<?php echo $plan['plan-id'] ?>">
+                                    data-id="<?php echo esc_attr( $plan['plan_id'] ) ?>">
                                 <i class="trash icon"></i>
                             </button>
                         </td>
@@ -394,20 +415,20 @@ class Deposit_Plan {
 		) {
 			return;
 		}
-		$existPlans = get_option( 'vicodin_payment_plan' );
+		$exist_plans = get_option( 'vicodin_payment_plan' );
 		$data       = sanitize_text_field( wp_unslash( $_POST['data'] ) );
 		$data       = json_decode( $data, true );
 
-		$plan = $existPlans[ $data['plan-id'] ];
+		$plan = $exist_plans[ $data['plan_id'] ];
 
 		if ( isset( $plan ) ) {
-			$plan['plan-active']            = $data['plan-active'];
-			$existPlans[ $data['plan-id'] ] = $plan;
+			$plan['plan_active']            = $data['plan_active'];
+			$exist_plans[ $data['plan_id'] ] = $plan;
 		}
 
-		update_option( 'vicodin_payment_plan', $existPlans );
+		update_option( 'vicodin_payment_plan', $exist_plans );
 
-		echo json_encode( 'update plan success!' );
+		wp_send_json_success();
 
 		wp_die();
 	}

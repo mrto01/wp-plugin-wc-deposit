@@ -34,18 +34,18 @@ class Email_Partial_paid extends \WC_Email{
 		if ( is_a( $order, 'WC_Order' ) ) {
 			$parent_order = wc_get_order( $order->get_parent_id() );
 
-			if ( !is_a( $parent_order, 'WC_Order' ) ) return;
+			if ( ! is_a( $parent_order, 'WC_Order' ) ) return;
 			$this->object                         = $parent_order;
 			$this->recipient                      = $this->object->get_billing_email();
 			$this->placeholders['{order_date}']   = wc_format_datetime( $this->object->get_date_created() );
 			$this->placeholders['{order_number}'] = $this->object->get_order_number();
 
-			if ( $order->get_type() != 'vwcdi_partial_order' ){
+			if ( $order->get_type() != 'vwcdi_partial_order' ) {
 				return;
 			}
 
-			$partial_type = $order->get_meta( 'vicodin_partial_payment_type' );
-			if ( $partial_type != 'partial_payment' ){
+			$partial_type = $order->get_meta( '_vicodin_partial_payment_type' );
+			if ( 'partial_payment' != $partial_type ) {
 				return;
 			}
 
@@ -87,7 +87,7 @@ class Email_Partial_paid extends \WC_Email{
 	public function init_form_fields() {
 		$placeholder_text  = sprintf( wp_kses( __( 'Placeholders available : %s', 'vico-deposit-and-installment' ), array( 'code' => array() ) ), '<code>' . esc_html( implode( ', ', array_keys( $this->placeholders ) ) ) . '</code>' );
 		$this->form_fields = array(
-			'enabled'    => array(
+			'enabled'      => array(
 				'title'   => esc_html__( 'Enable/disable',
 					'vico-deposit-and-installment' ),
 				'type'    => 'checkbox',
@@ -95,7 +95,7 @@ class Email_Partial_paid extends \WC_Email{
 					'vico-deposit-and-installment' ),
 				'default' => 'yes'
 			),
-			'subject'    => array(
+			'subject'      => array(
 				'title'       => esc_html__( 'Subject',
 					'vico-deposit-and-installment' ),
 				'type'        => 'text',
@@ -104,16 +104,15 @@ class Email_Partial_paid extends \WC_Email{
 				'placeholder' => $this->get_default_subject(),
 				'default'     => $this->get_default_subject(),
 			),
-			'heading'    => array(
-				'title'       => esc_html__( 'Email heading',
-					'vico-deposit-and-installment' ),
+			'heading'      => array(
+				'title'       => esc_html__( 'Email heading', 'vico-deposit-and-installment' ),
 				'type'        => 'text',
 				'description' => sprintf( wp_kses( __( 'Main heading contained within the email. <code>%s</code>.', 'vico-deposit-and-installment' ), array( 'code' => array() ) ), $placeholder_text ),
 				'desc_tip'    => true,
 				'placeholder' => $this->get_default_heading(),
 				'default'     => $this->get_default_heading(),
 			),
-			'email_text' => array(
+			'email_text'   => array(
 				'title'       => esc_html__( 'Email text',
 					'vico-deposit-and-installment' ),
 				'type'        => 'textarea',
@@ -124,7 +123,7 @@ class Email_Partial_paid extends \WC_Email{
 				'css'         => 'width:400px; height: 50px;',
 			),
 			'payment_text' => array(
-				'title' => __( 'Payment text', 'vico-deposit-and-installment'),
+				'title'       => __( 'Payment text', 'vico-deposit-and-installment'),
 				'type'        => 'textarea',
 				'description' => $placeholder_text,
 				'desc_tip'    => true,
@@ -132,7 +131,7 @@ class Email_Partial_paid extends \WC_Email{
 				'default'     => $this->get_default_payment_text(),
 				'css'         => 'width:400px; height: 50px;',
 			),
-			'email_type'         => array(
+			'email_type'   => array(
 				'title'       => __( 'Email type', 'woocommerce' ),
 				'type'        => 'select',
 				'description' => __( 'Choose which format of email to send.', 'vico-deposit-and-installment' ),
@@ -149,14 +148,14 @@ class Email_Partial_paid extends \WC_Email{
 		ob_start();
 		wc_get_template( $this->template_html ,
 			array(
-				'order' => $this->object,
-				'email_heading' => $this->get_heading(),
-				'additional_content' => version_compare( WOOCOMMERCE_VERSION, '3.7.0' ,'<') ?'' : $this-> get_additional_content(),
-				'email_text' => $this->get_email_text(),
-				'payment_text' => $this->get_payment_text(),
-				'plain_text' => false,
-				'sent_to_admin' => false,
-				'email' => $this
+				'order'              => $this->object,
+				'email_heading'      => $this->get_heading(),
+				'additional_content' => $this->get_additional_content(),
+				'email_text'         => $this->get_email_text(),
+				'payment_text'       => $this->get_payment_text(),
+				'plain_text'         => false,
+				'sent_to_admin'      => false,
+				'email'              => $this
 			),
 			'',
 			$this->template_base );
@@ -168,14 +167,15 @@ class Email_Partial_paid extends \WC_Email{
 		wc_get_template(
 			$this->template_plain,
 			array(
-				'order' => $this->object,
-				'email_heading' => $this->get_heading(),
-				'additional_content' => version_compare( WOOCOMMERCE_VERSION, '3.7.0' ,'<') ?'' : $this->get_additional_content(),
-				'email_text' => $this->get_email_text(),
-				'payment_text' => $this->get_payment_text(),
-				'plain_text' => true,
-				'sent_to_admin' => false,
-				'email' => $this
+				'order'              => $this->object,
+				'email_heading'      => $this->get_heading(),
+				'additional_content' => $this->get_additional_content(),
+				'email_text'         => $this->get_email_text(),
+				'payment_text'       => $this->get_payment_text(),
+				'plain_text'         => true,
+				'sent_to_admin'      => false,
+				'email'              => $this,
+				'schedule'           => $this->object->get_meta( 'vicodin_deposit_payment_schedule' )
 			),
 			'',
 			$this->template_base

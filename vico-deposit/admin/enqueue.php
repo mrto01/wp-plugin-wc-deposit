@@ -111,6 +111,7 @@ class Enqueue {
 				break;
 			case 'shop_order':
 			case 'woocommerce_page_wc-orders':
+			case 'woocommerce_page_wc-orders--vwcdi_partial_order':
 				$enqueue_styles     = [ 'icon', 'woocommerce-backend-order' ];
 				$enqueue_scripts    = [ 'woocommerce-backend-order' ];
 				$localize_script    = 'woocommerce-backend-order';
@@ -177,25 +178,18 @@ class Enqueue {
 		];
 
 		foreach ( $lib_scripts as $script ) {
-			wp_register_script( $this->slug . $script,
-				VICODIN_CONST['libs_url'] . $script . '.min.js',
-				array( 'jquery' ),
-				VICODIN_CONST['version'] );
-
+			wp_register_script( $this->slug . $script, VICODIN_CONST['libs_url'] . $script . '.min.js', array( 'jquery' ), VICODIN_CONST['version'], array( 'in_footer' => true ) );
 		}
 
 		$scripts = [
-			'setting' => [ 'jquery' ],
-			'plan'    => [ 'jquery' ],
-			'rule'    => [ 'jquery', 'jquery-ui-sortable' ],
+			'setting'                     => [ 'jquery' ],
+			'plan'                        => [ 'jquery' ],
+			'rule'                        => [ 'jquery', 'jquery-ui-sortable' ],
 			'woocommerce-backend-product' => ['jquery'],
-			'woocommerce-backend-order' => ['jquery']
+			'woocommerce-backend-order'   => ['jquery']
 		];
 		foreach ( $scripts as $script => $depends ) {
-			wp_register_script( $this->slug . $script,
-				VICODIN_CONST['dist_url'] . $script . $suffix . '.js',
-				$depends,
-				VICODIN_CONST['version'] );
+			wp_register_script( $this->slug . $script, VICODIN_CONST['dist_url'] . $script . $suffix . '.js', $depends, VICODIN_CONST['version'], array( 'in_footer' => true) );
 		}
 	}
 

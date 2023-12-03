@@ -2,123 +2,10 @@
 
 jQuery(document).ready(function ($) {
     var vicodin = {};
-    $('.vicodin-plan-schedule').each( function (){
-        loadEvent(this);
-    });
-    $('#vicodin_deposit_plan').select2({
-        placeholder: 'Select exists plans'
-    });
-    $('#vicodin_deposit_type').on('change', function () {
-        let type = $(this).val();
-        if (type == 'global') {
-            $('#vicodin_deposits_tab_data .wc-metaboxes-wrapper').addClass('hidden');
-        } else {
-            $('#vicodin_deposits_tab_data .wc-metaboxes-wrapper').removeClass('hidden');
-        }
-    })
-
-    function loadEvent( lastTable = null ) {
-        // because have many plan tables, need to differ which one is.
-
-        if (!lastTable) {
-            lastTable = $('.vicodin-plan-schedule:last');
-        }
-
-        vicodin.validatePlan = function () {
-            let check = true;
-            let nameInput = $('input[name="plan-name"]', lastTable);
-            let nameValue = $(nameInput).val().toString().trim();
-            // let totalAmount = vicodin.schedule.calPartialPayment();
-
-            if (nameValue === '') {
-                $('.error-message.name').remove();
-                let text = wp.i18n.__('Plan name required!', 'vico-deposit-and-installment');
-                let errorMess = $('<div class="error-message name">' + text + '</div>');
-                errorMess.insertAfter($(nameInput));
-                check = false;
-            } else {
-                $('.error-message.name').remove();
-                check = true;
-            }
-            // if (totalAmount > 100 || totalAmount < 100) {
-            //    $('.error-message.total').remove();
-            //    let text = wp.i18n.__('Total should be equal 100%', 'vico-deposit-and-installment');
-            //    let errorMess = $('<div class="error-message total">' + text + '</div>')
-            //    errorMess.insertAfter($('.table.vicodin-schedule'));
-            //    check = false;
-            // } else {
-            //    $('.error-message.total').remove();
-            //    check = true;
-            // }
-            return check;
-        }
-
-        $('input[name="plan-name"]', lastTable).on('input', function () {
-
-            $(lastTable).closest('.wc-metabox').find('.vicodin-plan-name').text($(this).val());
-        })
-
-        $('.increase-field', lastTable).on('click', function (e) {
-            let tbody = this.closest('tbody');
-            let currRow = this.closest('tr');
-            let nextRow = $(currRow).clone(true);
-            $(nextRow).find('select').val($(currRow).find('select').val());
-            $(tbody).append(nextRow);
-            $(this).addClass('hidden');
-            $('.decrease-field', currRow).removeClass('hidden');
-            if (tbody.children.length > 3) {
-                $(tbody).children(':last').find('.decrease-field').removeClass('hidden');
-            }
-            vicodin.schedule.calPartialPayment(lastTable);
-            vicodin.schedule.calDuration(lastTable);
-        });
-
-        $('.decrease-field', lastTable).on('click', function (e) {
-            let tbody = this.closest('tbody');
-            let currRow = this.closest('tr');
-            currRow.remove();
-            if (tbody.children.length <= 3) {
-                $(tbody).children(':last').find('.decrease-field').addClass('hidden');
-                $(tbody).children(':last').find('.increase-field').removeClass('hidden');
-            } else {
-                $(tbody).children(':last').find('.increase-field').removeClass('hidden');
-            }
-            vicodin.schedule.calPartialPayment(lastTable);
-            vicodin.schedule.calDuration(lastTable);
-        });
-
-        $('input[name="partial-payment"],input[name="deposit-amount"]', lastTable).on('input', function () {
-            console.log($('input[name="deposit-amount"]'));
-            vicodin.schedule.calPartialPayment(lastTable);
-            vicodin.schedule.calDuration(lastTable);
-        });
-
-        $('input[name="partial-day"]', lastTable).on('input', function () {
-            vicodin.schedule.calDuration(lastTable);
-        });
-
-        $('select[name="partial-date"]', lastTable).on('change', function () {
-            vicodin.schedule.calDuration();
-        })
-
-        var woo_currency_symbol = $('.woo-currency-symbol', lastTable).text();
-
-        $('#vicodin_unit_type').on('change', function () {
-            let type = $(this).val();
-            if (type == 'fixed') {
-                $('.woo-currency-symbol', lastTable).text(woo_currency_symbol);
-            } else {
-                $('.woo-currency-symbol', lastTable).text('%');
-            }
-        }).change();
-
-        $('.vicodin-remove-plan.delete').on('click', function () {
-            $(this).closest('.wc-metabox').remove();
-        });
-    }
     vicodin.schedule = {
-        calPartialPayment: function (lastTable) {
+        calcPartialPayment: function (lastTable) {
             let total = 0;
+            let unitType = $(lastTable).find('#vicodin_unit_type').val();
             $('input[name="partial-payment"],input[name="deposit-amount"]', lastTable).each(function () {
                 let partial = parseInt($(this).val());
                 if (!isNaN(partial)) {
@@ -126,16 +13,27 @@ jQuery(document).ready(function ($) {
                 }
             })
             $('.partial-total', lastTable).text(total);
+            if( unitType == 'percentage' && total > 100 || unitType == 'percentage' && total < 100) {
+                let error = $('<p>',{
+                    text: 'Total should be equal 100%',
+                    class: 'vicodin-error-message'
+                })
+                if ( $(lastTable).find('.vicodin-error-message').length == 0 ) {
+                    $(lastTable).append(error);
+                }
+
+            }else {
+                $(lastTable).find('.vicodin-error-message').remove();
+            }
             return total;
         },
 
-        calDuration: function (lastTable) {
+        calcDuration: function (lastTable) {
             let duration = {
                 'Years': 0,
                 'Months': 0,
                 'Days': 0
             }
-
             $('input[name="partial-day"]', lastTable).each(function () {
                 let numberOfDay = parseInt($(this).val());
                 if (!isNaN(numberOfDay)) {
@@ -163,6 +61,118 @@ jQuery(document).ready(function ($) {
             return durationText;
         }
     }
+    vicodin.validateNumber = function ( input ) {
+        let value = Math.abs( parseInt( $(input).val() ) );
+        if ( isNaN(value)) {
+            $(input).val('');
+        }else {
+            $(input).val(value);
+        }
+    }
+    $('#product-type').on('change', function () {
+        let type = $(this).val();
+
+        if ( type === 'grouped' || type === 'external') {
+            $('.vicodin_deposit_tab').hide();
+        }else {
+            $('.vicodin_deposit_tab').show();
+        }
+    } );
+
+    $('.vicodin-plan_schedule').each( function (){
+        loadEvent(this);
+    });
+
+    $('#vicodin_deposit_plan').select2({
+        placeholder: 'Select exists plans'
+    });
+
+    $('#vicodin_deposit_type').on('change', function () {
+        let type = $(this).val();
+        if (type == 'global') {
+            $('#vicodin_deposits_tab_data .wc-metaboxes-wrapper').addClass('hidden');
+        } else {
+            $('#vicodin_deposits_tab_data .wc-metaboxes-wrapper').removeClass('hidden');
+        }
+    })
+
+    function loadEvent( lastTable = null ) {
+        // because have many plan tables, need to differ which one is.
+
+        if (!lastTable) {
+            lastTable = $('.vicodin-plan_schedule:last');
+        }
+
+        $('input[name="plan_name"]', lastTable).on('input', function () {
+
+            $(lastTable).closest('.wc-metabox').find('.vicodin-plan_name').text($(this).val());
+        })
+
+        $('.increase-field', lastTable).on('click', function (e) {
+            let tbody = this.closest('tbody');
+            let currRow = this.closest('tr');
+            let nextRow = $(currRow).clone(true);
+            $(nextRow).find('select').val($(currRow).find('select').val());
+            $(tbody).append(nextRow);
+            $(this).addClass('hidden');
+            $('.decrease-field', currRow).removeClass('hidden');
+            if (tbody.children.length > 3) {
+                $(tbody).children(':last').find('.decrease-field').removeClass('hidden');
+            }
+            vicodin.schedule.calcPartialPayment(lastTable);
+            vicodin.schedule.calcDuration(lastTable);
+        });
+
+        $('.decrease-field', lastTable).on('click', function (e) {
+            let tbody = this.closest('tbody');
+            let currRow = this.closest('tr');
+            currRow.remove();
+            if (tbody.children.length <= 3) {
+                $(tbody).children(':last').find('.decrease-field').addClass('hidden');
+                $(tbody).children(':last').find('.increase-field').removeClass('hidden');
+            } else {
+                $(tbody).children(':last').find('.increase-field').removeClass('hidden');
+            }
+            vicodin.schedule.calcPartialPayment(lastTable);
+            vicodin.schedule.calcDuration(lastTable);
+        });
+
+        $('input[name="partial-payment"],input[name="deposit-amount"]', lastTable).on('change', function () {
+            vicodin.schedule.calcPartialPayment(lastTable);
+            vicodin.validateNumber(this);
+            vicodin.schedule.calcDuration(lastTable);
+        });
+
+        $('input[name="partial-day"]', lastTable).on('change', function () {
+            vicodin.validateNumber(this);
+            vicodin.schedule.calcDuration(lastTable);
+        });
+
+        $('select[name="partial-date"]', lastTable).on('change', function () {
+            vicodin.schedule.calcDuration(lastTable);
+        })
+        $('input[name="partial-fee"], input[name="deposit_fee"]', lastTable).on('change', function () {
+            vicodin.validateNumber(this);
+        })
+
+        var woo_currency_symbol = $('.woo-currency-symbol', lastTable).text();
+
+        $(lastTable).find('#vicodin_unit_type').on('change', function () {
+            let type = $(this).val();
+            if (type == 'fixed') {
+                $('.woo-currency-symbol', lastTable).text(woo_currency_symbol);
+            } else {
+                $('.woo-currency-symbol', lastTable).text('%');
+            }
+            vicodin.schedule.calcPartialPayment(lastTable);
+        }).change();
+
+        $('.vicodin-remove-plan.delete').on('click', function ( e ) {
+            e.preventDefault();
+            $(this).closest('.wc-metabox').remove();
+
+        });
+    }
 
     $('.vicodin-new-custom-plan').on('click', getPlanTemplate);
     $('.vicodin-save-custom-plan').on('click', saveCustomPlans);
@@ -179,7 +189,7 @@ jQuery(document).ready(function ($) {
             type: 'get',
             dataType: 'html',
             data: {
-                '_ajax_nonce': vicodinParams.nonce,
+                'nonce': vicodinParams.nonce,
                 'action': 'vicodin_get_new_plan_template',
             },
             beforeSend: function () {
@@ -207,15 +217,15 @@ jQuery(document).ready(function ($) {
             type: 'post',
             dataType: 'json',
             data: {
-                '_ajax_nonce': vicodinParams.nonce,
+                'nonce': vicodinParams.nonce,
                 'action': 'vicodin_save_custom_plans',
                 'post_id' : $('#post_ID').val(),
                 'data' : data,
                 'exists_plans': JSON.stringify($('#vicodin_deposit_plan').val()),
             },
             beforeSend: loadAnimation,
-            success: function (data) {
-                console.log(data);
+            success: function (response) {
+                console.log(response.data);
             },
             error: function(err) {
                 console.log(err)
@@ -226,34 +236,47 @@ jQuery(document).ready(function ($) {
 
     function getFormData() {
         let data = [];
-        $('.vicodin-plan-schedule').each(function () {
+        let fee_total = 0;
+        $('.vicodin-plan_schedule').each(function () {
             let plan = {
-                'plan-name' : $('input[name="plan-name"]', this).val(),
+                'plan_name' : $('input[name="plan_name"]', this).val(),
                 'deposit' : $('input[name="deposit-amount"]', this).val(),
-                'deposit-fee' : $('input[name="deposit-fee"]', this).val(),
+                'deposit_fee' : $('input[name="deposit_fee"]', this).val(),
                 'unit-type' : $('select[name="unit-type"]', this).val(),
-                'plan-schedule': []
+                'plan_schedule': []
             };
             let planForm = $(this).find('tbody').children();
             $(planForm).each(function (i) {
                 if (i > 1) {
                     let partial = $('input[name="partial-payment"]', this).val();
                     let after = $('input[name="partial-day"]', this).val();
+                    if ( after == 0 ) {
+                        after = 1;
+                    }
                     let dateType = $('select[name="partial-date"]', this).val();
                     let fee = $('input[name="partial-fee"]', this).val();
-                    plan['plan-schedule'].push({
+                    fee_total += isNaN( parseInt( fee ) )  ? 0 : parseInt(fee) ;
+                    plan['plan_schedule'].push({
                         partial,
                         after,
-                        'date-type': dateType,
+                        'date_type': dateType,
                         fee
                     });
                 }
             })
-            plan['duration'] = vicodin.schedule.calDuration(this);
-            plan['total'] = vicodin.schedule.calPartialPayment(this);
+            plan['fee_total'] = fee_total;
+            plan['total'] = vicodin.schedule.calcPartialPayment(this);
+            // Auto fill after input value if it is empty or less than 0
+            let table = this;
+            $('input[name="partial-day"]', this).each( function (){
+                if ( $(this).val == '' || $(this).val() <= 0 ){
+                    $(this).val(1);
+                }
+            });
+            plan['duration'] = vicodin.schedule.calcDuration(this);
             data.push(plan);
         });
-        return JSON.stringify(data);
+        return JSON.stringify( data );
     }
 
 });

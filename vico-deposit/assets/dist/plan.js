@@ -26,7 +26,14 @@ jQuery(document).ready(function ($) {
     vicodin.loadDocument = function (data) {
         $('.vico-deposit.wrapper').html(data);
     }
-
+    vicodin.validateNumber = function ( input ) {
+        let value = Math.abs( parseInt( $(input).val() ) );
+        if ( isNaN(value)) {
+            $(input).val('');
+        }else {
+            $(input).val(value);
+        }
+    }
     vicodin.observeContent = function () {
         let vicodinMain = $('.wrapper.vico-deposit');
         const observer = new MutationObserver(function (mutationList, observer) {
@@ -65,12 +72,19 @@ jQuery(document).ready(function ($) {
                 vicodin.schedule.calPartialPayment();
                 vicodin.schedule.calDuration();
             });
-            $('input', '.partial-payment').on('input', function () {
+            $('input', '.partial-payment').on('change', function () {
+                vicodin.validateNumber( this );
                 vicodin.schedule.calPartialPayment();
                 vicodin.schedule.calDuration();
             });
-            $('input', '.partial-day').on('input', function () {
+            $('input', '.partial-day').on('change', function () {
+                vicodin.validateNumber(this);
+                if ($(this).val == '' || $(this).val() <= 0 ) {
+                    $(this).val(1);
+                }
                 vicodin.schedule.calDuration();
+            }); $('input', '.partial-fee').on('change', function () {
+                vicodin.validateNumber(this);
             });
             $('select', '.partial-day').on('change', function () {
                 vicodin.schedule.calDuration();
@@ -79,8 +93,8 @@ jQuery(document).ready(function ($) {
             $('#vicodin-save-plan').on('click', vicodinSavePlanHandler);
             $('.vicodin-plan-enable').on('change', function () {
                 let data = {
-                    'plan-id': $(this).data('id'),
-                    'plan-active': $(this).is(':checked')
+                    'plan_id': $(this).data('id'),
+                    'plan_active': $(this).is(':checked')
                 }
                 vicodin.updatePlan(JSON.stringify(data));
             })
@@ -192,9 +206,9 @@ jQuery(document).ready(function ($) {
     vicodin.getHomePage = function () {
         $.ajax({
             url: vicodinParams.ajaxUrl,
-            type: 'get',
+            type: 'post',
             data: {
-                '_ajax_nonce': vicodinParams.nonce,
+                'nonce': vicodinParams.nonce,
                 'action': 'vicodin_get_plan_list'
             },
             dataType: 'html',
@@ -209,21 +223,22 @@ jQuery(document).ready(function ($) {
             type: 'get',
             dataType: 'html',
             data: {
-                '_ajax_nonce': vicodinParams.nonce,
+                'nonce': vicodinParams.nonce,
                 'action': 'vicodin_get_plan',
-                'plan-id': id
+                'plan_id': id
             },
             beforeSend: vicodin.loadAnimation,
             success: vicodin.loadDocument,
-            error: function (error) {
+            error: function (xhr, status, error) {
                 $('.wrapper.vico-deposit').text(error.text());
             }
         })
+
     }
 
     vicodin.validatePlan = function () {
         let check = true;
-        let nameInput = $('input[name="plan-name"]');
+        let nameInput = $('input[name="plan_name"]');
         let nameValue = $(nameInput).val().toString().trim();
         let totalAmount = vicodin.schedule.calPartialPayment();
 
@@ -235,7 +250,6 @@ jQuery(document).ready(function ($) {
             check = false;
         } else {
             $('.error-message.name').remove();
-            check = true;
         }
         if (totalAmount > 100 || totalAmount < 100) {
             $('.error-message.total').remove();
@@ -245,19 +259,25 @@ jQuery(document).ready(function ($) {
             check = false;
         } else {
             $('.error-message.total').remove();
-            check = true;
         }
+        $('input', '.partial-day').each( function (){
+            if ( $(this).val == '' || $(this).val() <= 0 ){
+                $(this).val(1);
+            }
+            vicodin.schedule.calDuration();
+        })
         return check;
     }
 
     vicodin.getFormData = function () {
         let data = {
-            'plan-name': $('input[name="plan-name"]').val(),
-            'plan-active': $('input[name="plan-active"]').is(':checked'),
-            'plan-description': $('textarea[name="plan-description"]').val(),
-            'plan-id': $('input[name="plan-id"]').val()
+            'plan_name': $('input[name="plan_name"]').val(),
+            'plan_active': $('input[name="plan_active"]').is(':checked'),
+            'plan_description': $('textarea[name="plan_description"]').val(),
+            'plan_id': $('input[name="plan_id"]').val()
         }
         let schedule = [];
+        let fee_total = 0;
         let scheduleRows = $('.table.vicodin-schedule tbody').find('tr');
         scheduleRows.each(function (index) {
             if (index !== 0) {
@@ -265,20 +285,22 @@ jQuery(document).ready(function ($) {
                 let after = $('input[name="partial-day"]', this).val();
                 let dateType = $('select[name="partial-date"]', this).val();
                 let fee = $('input[name="partial-fee"]', this).val();
+                fee_total += isNaN( parseInt( fee ) )  ? 0 : parseInt(fee) ;
                 schedule.push({
                     partial,
                     after,
-                    'date-type': dateType,
+                    'date_type': dateType,
                     fee
                 });
             } else {
                 data['deposit'] = $('input[name="partial-payment"]', this).val();
-                data['deposit-fee'] = $('input[name="partial-fee"]', this).val();
+                data['deposit_fee'] = $('input[name="partial-fee"]', this).val();
                 data['total'] = 100;
             }
         });
-        data['plan-schedule'] = schedule;
+        data['plan_schedule'] = schedule;
         data['duration'] = vicodin.schedule.calDuration();
+        data['fee_total'] = fee_total;
         return JSON.stringify(data);
     }
 
@@ -296,8 +318,8 @@ jQuery(document).ready(function ($) {
 
                 $('#vicodin-save-plan').addClass('loading').unbind();
             },
-            success: function (data) {
-                $('input[name="plan-id"]').val(data);
+            success: function (response) {
+                $('input[name="plan_id"]').val(response.data);
                 $('.vicodin-action-bar h2').text(wp.i18n.__('Edit plan', 'vico-deposit-and-installment'));
             },
             error: function (error) {
@@ -313,8 +335,8 @@ jQuery(document).ready(function ($) {
     vicodin.deletePlan = function (id) {
         let data = {
             'action': 'vicodin_delete_plan',
-            '_ajax_nonce': vicodinParams.nonce,
-            'plan-id': id
+            'nonce': vicodinParams.nonce,
+            'plan_id': id
         }
         $.ajax({
             url: vicodinParams.ajaxUrl,

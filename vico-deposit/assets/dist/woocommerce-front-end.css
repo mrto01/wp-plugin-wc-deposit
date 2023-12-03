@@ -129,7 +129,7 @@
 .vicodin-plan-box input {
   display: none !important;
 }
-.vicodin-plan-box input[name=vicodin-plan-select]:checked ~ .vicodin-plan-schedule {
+.vicodin-plan-box input[name=vicodin-plan-select]:checked ~ .vicodin-plan_schedule {
   display: table;
 }
 .vicodin-plan-box input[name=vicodin-plan-select]:checked ~ .vicodin-plan-summary .vicodin-select {
@@ -165,15 +165,15 @@
   font-size: 20px;
   font-weight: 500;
 }
-.vicodin-plan-box .vicodin-plan-schedule {
+.vicodin-plan-box .vicodin-plan_schedule {
   display: none;
   width: 100%;
   border-collapse: collapse;
 }
-.vicodin-plan-box .vicodin-plan-schedule thead {
+.vicodin-plan-box .vicodin-plan_schedule thead {
   background-color: var(--vdi-bg);
 }
-.vicodin-plan-box .vicodin-plan-schedule td {
+.vicodin-plan-box .vicodin-plan_schedule td {
   padding: 5px;
 }
 

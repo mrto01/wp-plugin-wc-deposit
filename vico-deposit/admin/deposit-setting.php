@@ -22,31 +22,39 @@ class Deposit_Setting {
 
 	public function save_setting() {
 		self::$settings = get_option( 'vicodin_deposit_setting', null );
-		if ( ! isset( $_POST['_vicodin_nonce'] )
-		     || ! isset( $_POST['vicodin_setting_params'] )
+
+		if ( ! ( isset( $_POST['_vicodin_nonce'], $_POST['vicodin_setting_params'])
+		         && wp_verify_nonce( sanitize_key( $_POST['_vicodin_nonce'] ),
+				'vicodin_settings' ) )
 		) {
-			return;
-		}
-		if ( ! wp_verify_nonce( sanitize_text_field( $_POST['_vicodin_nonce'] ),
-			'vicodin_settings' )
-		) {
-			return;
-		}
-		if ( ! current_user_can( 'manage_woocommerce' ) ) {
 			return;
 		}
 
-		$data           = wc_clean( $_POST['vicodin_setting_params'] );
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		$data = wp_unslash( $_POST['vicodin_setting_params'] );
+        foreach ( $data as $key => $value ) {
+            if ( is_array( $value ) ) {
+                $value = array_map( 'sanitize_text_field', $value );
+            }else {
+                $value = sanitize_text_field( $value );
+            }
+            $data[ $key ] = $value;
+        }
+
 		$args           = array(
 			'enabled'                 => '0',
 			'auto_charge'             => '0',
-			'exclude_payment_methods' => array(),
+			'exclude_payment_methods' => array( ),
 			'coupon'                  => 'deposit',
 			'tax'                     => 'deposit',
 			'fee'                     => 'deposit',
 			'shipping'                => 'deposit',
 			'shipping_tax'            => 'deposit',
 		);
+
 		self::$settings = array_merge( $args, $data );
 		update_option( 'vicodin_deposit_setting', self::$settings );
 	}
@@ -66,24 +74,24 @@ class Deposit_Setting {
 	public static function get_extra_options() {
 		return array(
 			'coupon'       => [
-				'title' => 'Coupon Handling.',
-				'desc'  => 'How coupon will be handled.'
+				'title' => __( 'Coupon Handling.', 'vico-deposit-and-installment' ),
+				'desc'  => __( 'How coupon will be handled.', 'vico-deposit-and-installment' )
 			],
 			'tax'          => [
-				'title' => 'Tax Collection',
-				'desc'  => 'How tax will be charged.'
+				'title' => __( 'Tax Collection', 'vico-deposit-and-installment' ),
+				'desc'  => __( 'How tax will be charged.', 'vico-deposit-and-installment')
 			],
 			'fee'          => [
-				'title' => 'Fee Collection',
-				'desc'  => 'How fee will be charged.'
+				'title' => __( 'Fee Collection', 'vico-deposit-and-installment' ),
+				'desc'  => __( 'How fee will be charged.', 'vico-deposit-and-installment' )
 			],
 			'shipping'     => [
-				'title' => 'Shipping Handling',
-				'desc'  => 'How shipping will be charged.'
+				'title' => __( 'Shipping Handling', 'vico-deposit-and-installment' ),
+				'desc'  => __( 'How shipping will be charged.', 'vico-deposit-and-installment' )
 			],
 			'shipping_tax' => [
-				'title' => 'Shipping Tax Handling',
-				'desc'  => 'How shipping tax will be handled.'
+				'title' => __( 'Shipping Tax Handling', 'vico-deposit-and-installment' ),
+				'desc'  => __( 'How shipping tax will be handled.', 'vico-deposit-and-installment' )
 			]
 		);
 	}
@@ -92,7 +100,7 @@ class Deposit_Setting {
 		$params = self::$settings;
 		if ( $params ) {
 			if ( isset( $params[ $field ] ) ) {
-				return $params[ $field ];
+				return $params[ $field ] ;
 			} else {
 				return $default;
 			}
@@ -105,9 +113,9 @@ class Deposit_Setting {
 		$payment_gateways = WC()->payment_gateways()->payment_gateways();
 		$extra_options    = self::get_extra_options();
 		$extra_selects    = [
-			'deposit' => 'With Deposit',
-			'future'  => 'With Future Payment',
-			'split'   => 'Split'
+			'deposit' => __( 'With Deposit', 'vico-deposit-and-installment' ),
+			'future'  => __( 'With Future Payment', 'vico-deposit-and-installment' ),
+			'split'   => __( 'Split', 'vico-deposit-and-installment' )
 		]
 		?>
         <div class="wrapper vico-deposit">
@@ -131,16 +139,15 @@ class Deposit_Setting {
                             <td>
                                 <div class="vi-ui toggle checkbox">
                                     <input type="checkbox"
-                                           name="<?php echo self::set_field( 'enabled' ); ?>"
+                                           name="<?php echo esc_attr( self::set_field( 'enabled' ) ); ?>"
                                            id="vicodin-enable"
 										<?php echo self::get_field( 'enabled' )
 											? 'checked' : '' ?>>
                                     <label></label>
                                 </div>
-                            </td>
-                            <td><p class="description"><?php esc_html_e( 'Turn on Deposit
+                                <p class="description"><?php esc_html_e( 'Turn on Deposit
                                     feature.',
-										'vico-deposit-and-installment' ); ?></p>
+			                            'vico-deposit-and-installment' ); ?></p>
                             </td>
                         </tr>
                         <tr>
@@ -151,16 +158,15 @@ class Deposit_Setting {
                             <td>
                                 <div class="vi-ui toggle checkbox">
                                     <input type="checkbox"
-                                           name="<?php echo self::set_field( 'auto_charge' ) ?>"
+                                           name="<?php echo esc_attr( self::set_field( 'auto_charge' ) ) ?>"
                                            id="vicodin-enable"
 										<?php echo self::get_field( 'auto_charge' )
 											? 'checked' : '' ?>>
                                     <label></label>
                                 </div>
-                            </td>
-                            <td><p class="description"><?php esc_html_e( 'Charge customer balance
+                                <p class="description"><?php esc_html_e( 'Charge customer balance
                                     when a partial payment is due.',
-										'vico-deposit-and-installment' ); ?></p>
+			                            'vico-deposit-and-installment' ); ?></p>
                             </td>
                         </tr>
                         <tr>
@@ -170,8 +176,7 @@ class Deposit_Setting {
                             </th>
                             <td>
                                 <select multiple class="vi-ui dropdown"
-                                        name="<?php echo self::set_field( 'exclude_payment_methods',
-									        true ) ?>"
+                                        name="<?php echo esc_attr( self::set_field( 'exclude_payment_methods', true ) ) ?>"
                                         id="vicodin-payment">
                                     <option value="">Select method</option>
 									<?php
@@ -179,48 +184,42 @@ class Deposit_Setting {
 										$payment_gateways as $payment_gateway
 									) {
 										?>
-                                        <option value="<?php esc_attr_e( $payment_gateway->id ); ?>"
+                                        <option value="<?php echo esc_attr( $payment_gateway->id ); ?>"
 											<?php echo ( in_array( $payment_gateway->id,
-												self::get_field( 'exclude_payment_methods' ) ) )
+                                                self::get_field( 'exclude_payment_methods' ) ) )
 												? 'selected'
-												: '' ?>><?php esc_html_e( $payment_gateway->title, 'vico-deposit-and-installment' ); ?></option>
+												: '' ?>><?php echo esc_html( $payment_gateway->title ); ?></option>
 										<?php
 									}
 									?>
                                 </select>
-                            </td>
-                            <td><p class="description"><?php esc_html_e( 'The selected payment
+                                <p class="description"><?php esc_html_e( 'The selected payment
                                     methods will not be available.',
-										'vico-deposit-and-installment' ); ?></p>
+			                            'vico-deposit-and-installment' ); ?></p>
                             </td>
                         </tr>
 						<?php foreach ( $extra_options as $id => $option ) { ?>
                             <tr>
                                 <th>
-                                    <label for="vicodin-coupon"><?php esc_html_e( $option['title'],
-											'vico-deposit-and-installment' ); ?></label>
+                                    <label for="vicodin-coupon"><?php echo esc_html( $option['title'] ); ?></label>
                                 </th>
                                 <td>
                                     <select class="vi-ui dropdown"
-                                            name="<?php echo self::set_field( $id ) ?>"
+                                            name="<?php echo esc_attr( self::set_field( $id ) ) ?>"
                                             id="vicodin-coupon">
 										<?php
 										foreach (
 											$extra_selects as $value => $text
 										) {
 											?>
-                                            <option value="<?php echo $value ?>" <?php echo ( $value
-											                                             == self::get_field( $id )
+                                            <option value="<?php echo esc_attr( $value ) ?>" <?php echo ( self::get_field( $id ) == $value
 												? 'selected'
-												: '' ) ?>><?php esc_html_e($text); ?></option>
+												: '' ) ?>><?php echo esc_html( $text ); ?></option>
 											<?php
 										}
 										?>
                                     </select>
-                                </td>
-                                <td>
-                                    <p class="description"><?php esc_html_e( $option['desc'],
-											'vico-deposit-and-installment' ); ?></p>
+                                    <p class="description"><?php echo esc_html( $option['desc'] ); ?></p>
                                 </td>
                             </tr>
 						<?php } ?>
@@ -230,13 +229,13 @@ class Deposit_Setting {
                 <div class="vi-ui bottom attached tab segment"
                      data-tab="email">
                     <div class="vi-ui vicodin-email-links">
-                        <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=email&section=vicodin_email_deposit_paid' ) ?>"
-                           class="blue">Order full payment</a>
-                        <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=email&section=vicodin_email_deposit_paid' ) ?>"
-                           class="blue">Partial payment reminder</a>
-                        <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=email&section=vicodin_email_deposit_paid' ) ?>"
+<!--                        <a href="--><?php //echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=email&section=vicodin_email_deposit_paid' ) ) ?><!--"-->
+<!--                           class="blue">Order full payment</a>-->
+<!--                        <a href="--><?php //echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=email&section=vicodin_email_deposit_paid' ) ) ?><!--"-->
+<!--                           class="blue">Partial payment reminder</a>-->
+                        <a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=email&section=vicodin_email_deposit_paid' ) ) ?>"
                            class="blue">Deposit paid</a>
-                        <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=email&section=vicodin_email_partial_paid' ) ?>"
+                        <a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=email&section=vicodin_email_partial_paid' ) ) ?>"
                            class="blue">Partial paid</a>
                     </div>
                 </div>
@@ -248,6 +247,7 @@ class Deposit_Setting {
                 <p></p>
             </form>
         </div>
+        <?php do_action( 'villatheme_support_vico-deposit-and-installment' ) ?>
 		<?php
 	}
 

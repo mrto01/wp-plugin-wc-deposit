@@ -28,17 +28,17 @@ use WP_Error;
 defined( 'ABSPATH' ) || exit;
 
 define( 'VICODIN_CONST', [
-	'version'               => '1.0.1',
-	'plugin_name'           => 'Vico deposit and installment',
-	'slug'                  => 'vicodin',
-	'assets_slug'           => 'vicodin-',
-	'file'                  => __FILE__,
-	'basename'              => plugin_basename( __FILE__ ),
-	'plugin_dir'            => plugin_dir_path( __FILE__ ),
-	'dist_url'              => plugins_url( 'assets/dist/', __FILE__ ),
-	'img_url'               => plugins_url( 'assets/img/', __FILE__ ),
-	'libs_url'              => plugins_url( 'assets/libs/', __FILE__ ),
-	'order_type'            => 'vwcdi_partial_order'
+	'version'     => '1.0.1',
+	'plugin_name' => 'Vico deposit and installment',
+	'slug'        => 'vicodin',
+	'assets_slug' => 'vicodin-',
+	'file'        => __FILE__,
+	'basename'    => plugin_basename( __FILE__ ),
+	'plugin_dir'  => plugin_dir_path( __FILE__ ),
+	'dist_url'    => plugins_url( 'assets/dist/', __FILE__ ),
+	'img_url'     => plugins_url( 'assets/img/', __FILE__ ),
+	'libs_url'    => plugins_url( 'assets/libs/', __FILE__ ),
+	'order_type'  => 'vwcdi_partial_order'
 ] );
 
 require_once VICODIN_CONST['plugin_dir'] . '/autoload.php';
@@ -83,6 +83,26 @@ if ( ! class_exists( 'WP_Vico_Deposit' ) ) {
 		}
 
 		public function init() {
+			if ( ! class_exists( 'VillaTheme_Require_Environment' ) ) {
+				require_once VICODIN_CONST['plugin_dir'] . '/inc/support/support.php';
+			}
+
+			$environment = new \VillaTheme_Require_Environment( [
+				'plugin_name'     => 'Vico deposit and installment for WooCommerce',
+				'php_version'     => '7.0',
+				'wp_version'      => '5.0',
+				'wc_version'      => '5.0',
+				'require_plugins' => [
+					[
+						'slug' => 'woocommerce',
+						'name' => 'WooCommerce',
+					],
+				]
+			] );
+
+			if ( $environment->has_error() ) {
+				return;
+			}
 			add_filter( 'plugin_action_links_' . VICODIN_CONST['basename'],
 				array( $this, 'setting_link' ) );
 			$this->load_text_domain();
@@ -123,6 +143,24 @@ if ( ! class_exists( 'WP_Vico_Deposit' ) ) {
 					wp_kses_post( $message ) );
 			}
 		}
+		public function support() {
+			if ( class_exists( 'VillaTheme_Support' ) ) {
+				new \VillaTheme_Support(
+					array(
+						'support'    => 'https://wordpress.org/support/plugin/',
+						'docs'       => 'http://docs.villatheme.com/',
+						'review'     => 'https://wordpress.org/support/plugin/',
+						'pro_url'    => '',
+						'css'        => VICODIN_CONST['dist_url'],
+						'image'      => VICODIN_CONST['img_url'],
+						'slug'       => 'vico-deposit-and-installment',
+						'menu_slug'  => 'vicodin_menu',
+						'version'    => VICODIN_CONST['version'],
+						'survey_url' => 'https://script.google.com/macros/s/AKfycbxCadAI0khct5tqhGMvp1kGqVOtHH05iwOqrbPyJcjGWiQiKv-64FL7-VpWbO0bPUU7/exec'
+					)
+				);
+			}
+		}
 
 		public function load_classes() {
 			require_once VICODIN_CONST['plugin_dir'] . 'inc/functions.php';
@@ -131,7 +169,7 @@ if ( ! class_exists( 'WP_Vico_Deposit' ) ) {
 			Deposit_Backend::instance();
 			Deposit_Front_End::instance();
 			Deposit_Admin::instance();
-
+			$this->support();
 		}
 
 	}

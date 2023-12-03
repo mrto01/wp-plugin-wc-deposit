@@ -31,10 +31,10 @@ jQuery(document).ready(function ($) {
         getRuleList: function () {
             $.ajax({
                 url: vicodinParams.ajaxUrl,
-                type: 'get',
+                type: 'post',
                 dataType: 'html',
                 data: {
-                    '_ajax_nonce': vicodinParams.nonce,
+                    'nonce': vicodinParams.nonce,
                     'action': 'vicodin_get_rule_list',
                 },
                 beforeSend: vicodin_rule.loadAnimation,
@@ -56,7 +56,7 @@ jQuery(document).ready(function ($) {
                 type: 'post',
                 dataType: 'text',
                 data: {
-                    '_ajax_nonce': vicodinParams.nonce,
+                    'nonce': vicodinParams.nonce,
                     'action': 'vicodin_sort_rule_list',
                     'data': list
                 },
@@ -100,8 +100,8 @@ jQuery(document).ready(function ($) {
             });
             $('.vicodin-rule-enable').on('change', function () {
                 let data = {
-                    'rule-id': $(this).data('id'),
-                    'rule-active': $(this).is(':checked')
+                    'rule_id': $(this).data('id'),
+                    'rule_active': $(this).is(':checked')
                 }
                 vicodin_rule.updateRule(JSON.stringify(data));
             });
@@ -112,9 +112,9 @@ jQuery(document).ready(function ($) {
                 type: 'get',
                 dataType: 'html',
                 data: {
-                    '_ajax_nonce': vicodinParams.nonce,
+                    'nonce': vicodinParams.nonce,
                     'action': 'vicodin_get_rule',
-                    'rule-id': id
+                    'rule_id': id
                 },
                 beforeSend: vicodin_rule.loadAnimation,
                 success: function (data) {
@@ -130,61 +130,132 @@ jQuery(document).ready(function ($) {
 
             });
         },
+        isSearching: true,
+        selectedOptions: [],
+        searchProducts: function ( product_name, select ) {
+            $.ajax({
+                url: vicodinParams.ajaxUrl,
+                type: 'post',
+                dataType: 'json',
+                data: {
+                    'nonce': vicodinParams.nonce,
+                    'action': 'vicodin_search_products',
+                    'product_name': product_name
+                },
+                beforeSend: function() {
+                    $(select).parent().addClass('loading');
+                    vicodin_rule.isSearching = false;
+                },
+                success: function( response ) {
+                    let products = response.data;
+
+                    $(select).children().each( function () {
+                        if ( !vicodin_rule.selectedOptions.includes( $(this).val().toString() ) ) {
+                            $(this).remove();
+                        }
+                    } );
+                    for ( let {id,name} of products ) {
+                        if ( !vicodin_rule.selectedOptions.includes( id.toString() ) ) {
+                            let option = $('<option>', {
+                                value: id,
+                                text: name,
+                            })
+                            $(select).append(option)
+                        }
+                    }
+                },
+                error: function(xhr, status, err) {
+                    console.log(err)
+                },
+                complete: function() {
+                    $(select).parent().removeClass('loading');
+                    vicodin_rule.isSearching = true;
+                }
+            });
+        },
         addRuleEvents: function () {
 
             $('select.dropdown').dropdown({
                 'clearable': true,
             });
-
-            $('.vicodin-taxonomy').on('change', function () {
-                let select1 = $('select', this);
-                let ext = $(select1).attr('name').slice(-3);
-                let select2 = $('select[name$="' + ext + '"]', '.vicodin-taxonomy').not(select1);
-                let group = (ext === 'inc') ? 'exc' : 'inc';
-                if ($(select1).val().length > 0 || $(select2).val().length > 0) {
-                    let field = $('.vicodin-taxonomy').has('select[name$="' + group + '"]').not(this);
-                    $(field).closest('.field').addClass('disabled');
-                } else {
-                    let field = $('.vicodin-taxonomy').has('select[name$="' + group + '"]').not(this);
-                    $(field).closest('.field').removeClass('disabled');
-                }
-            }).change();
-
-            $('.vicodin-taxonomy-one').on('change', function () {
-                let select = $('select', this);
-                let name = $(select).attr('name').slice(0, -3);
-                let ext = ($(select).attr('name').slice(-3) === 'inc') ? 'exc' : 'inc';
-                if ($(select).val().length > 0) {
-                    $('.field').has('#' + name + ext).addClass('disabled');
-                } else {
-                    $('.field').has('#' + name + ext).removeClass('disabled');
-                }
-            }).change();
-
-            $('.button.increase-field').on('click', function () {
-                let currRange = $(this.closest('tr'));
-                $(currRange).find('.button.decrease-field').removeClass('hidden');
-
-                let nextRange = $(currRange).clone(true);
-                $(nextRange).find('input').val('');
-                $(currRange).find('.button.increase-field').addClass('hidden');
-
-                $('.vicodin-price-range tbody').append(nextRange);
-
+            
+            $('#rule_products_inc,#rule_products_exc').dropdown({
+                onShow: function() {
+                    let select = this;
+                    if (vicodin_rule.selectedOptions.length === 0 ){
+                        vicodin_rule.selectedOptions = $(select).val();
+                    }
+                    $(this).parent().find('input.search').on('input', function () {
+                        let input = this;
+                        let key = $(input).val().trim();
+                        setTimeout(function() {
+                            if ( key === $(input).val().trim() && key.length >= 3 ) {
+                                vicodin_rule.searchProducts( key,select )
+                            }
+                        },1200)
+                    })
+                },
+                onChange: function (value, text) {
+                    vicodin_rule.selectedOptions = value;
+                },
             });
 
-            $('.button.decrease-field').on('click', function () {
-                $(this).closest('tr').remove();
+            // $('.vicodin-taxonomy').on('change', function () {
+            //     let select1 = $('select', this);
+            //     let ext = $(select1).attr('name').slice(-3);
+            //     let select2 = $('select[name$="' + ext + '"]', '.vicodin-taxonomy').not(select1);
+            //     let group = (ext === 'inc') ? 'exc' : 'inc';
+            //     if ($(select1).val().length > 0 || $(select2).val().length > 0) {
+            //         let field = $('.vicodin-taxonomy').has('select[name$="' + group + '"]').not(this);
+            //         $(field).closest('.field').addClass('disabled');
+            //     } else {
+            //         let field = $('.vicodin-taxonomy').has('select[name$="' + group + '"]').not(this);
+            //         $(field).closest('.field').removeClass('disabled');
+            //     }
+            // }).change();
+            //
+            // $('.vicodin-taxonomy-one').on('change', function () {
+            //     let select = $('select', this);
+            //     let name = $(select).attr('name').slice(0, -3);
+            //     let ext = ($(select).attr('name').slice(-3) === 'inc') ? 'exc' : 'inc';
+            //     if ($(select).val().length > 0) {
+            //         $('.field').has('#' + name + ext).addClass('disabled');
+            //     } else {
+            //         $('.field').has('#' + name + ext).removeClass('disabled');
+            //     }
+            // }).change();
 
-                let table = $('.vicodin-price-range tbody');
+            // $('.button.increase-field').on('click', function () {
+            //     let currRange = $(this.closest('tr'));
+            //     $(currRange).find('.button.decrease-field').removeClass('hidden');
+            //
+            //     let nextRange = $(currRange).clone(true);
+            //     $(nextRange).find('input').val('');
+            //     $(currRange).find('.button.increase-field').addClass('hidden');
+            //
+            //     $('.vicodin-price-range tbody').append(nextRange);
+            //
+            // });
 
-                $(table).children(':last').find('.button.increase-field').removeClass('hidden');
-
-                if (table.children().length < 2) {
-                    $(table).children(':last').find('.button.decrease-field').addClass('hidden');
+            // $('.button.decrease-field').on('click', function () {
+            //     $(this).closest('tr').remove();
+            //
+            //     let table = $('.vicodin-price-range tbody');
+            //
+            //     $(table).children(':last').find('.button.increase-field').removeClass('hidden');
+            //
+            //     if (table.children().length < 2) {
+            //         $(table).children(':last').find('.button.decrease-field').addClass('hidden');
+            //     }
+            // })
+            $('input[name="price_start"],input[name="price_end"]','.vicodin-price-range').on('change', function() {
+                let value = Math.abs( parseFloat( $(this).val() ) );
+                if ( isNaN(value)) {
+                    $(this).val('');
+                }else {
+                    $(this).val(value);
                 }
             })
-
             $('#vicodin-save-rule').on('click', function () {
                 if (vicodin_rule.validateForm()) {
                     vicodin_rule.saveRule();
@@ -207,8 +278,8 @@ jQuery(document).ready(function ($) {
                 beforeSend: function () {
                     $('#vicodin-save-rule').addClass('loading').unbind();
                 },
-                success: function (data) {
-                    $('input[name="rule-id"]').val(data);
+                success: function ( response ) {
+                    $('input[name="rule_id"]').val( response.data );
                     $('.vicodin-action-bar h2').text(wp.i18n.__('Edit rule', 'vico-deposit-and-installment'));
                 },
                 error: function (err) {
@@ -246,9 +317,9 @@ jQuery(document).ready(function ($) {
                 type: 'post',
                 dataType: 'html',
                 data: {
-                    '_ajax_nonce': vicodinParams.nonce,
+                    'nonce': vicodinParams.nonce,
                     'action': 'vicodin_delete_rule',
-                    'rule-id': id
+                    'rule_id': id
                 },
                 beforeSend: function () {
                     $('.vi-ui.table').addClass('form loading');
@@ -263,13 +334,13 @@ jQuery(document).ready(function ($) {
         },
         validateForm: function () {
             let check = true;
-            let nameInput = $('input[name="rule-name"]');
+            let nameInput = $('input[name="rule_name"]');
             let nameValue = $(nameInput).val().toString().trim();
 
             if (nameValue === '') {
                 $('.error-message.name').remove();
                 let text = wp.i18n.__('Rule name required!', 'vico-deposit-and-installment');
-                let errorMess = $('<div class="error-message name">' + text + '</div>');
+                let errorMess = $('<div class="error-message">' + text + '</div>');
                 errorMess.insertAfter($(nameInput));
                 check = false;
             } else {
@@ -280,24 +351,24 @@ jQuery(document).ready(function ($) {
         },
         getFormData: function () {
             let data = {
-                'rule-id': $('input[name="rule-id"]').val(),
-                'rule-name': $('input[name="rule-name"]').val(),
-                'rule-active': $('input[name="rule-active"]').is(':checked'),
-                'rule-categories-inc': $('select[name="rule-categories-inc"]').val() || [],
-                'rule-categories-exc': $('select[name="rule-categories-exc"]').val() || [],
-                'rule-tags-inc': $('select[name="rule-tags-inc"]').val() || [],
-                'rule-tags-exc': $('select[name="rule-tags-exc"]').val() || [],
-                'rule-users-inc': $('select[name="rule-users-inc"]').val() || [],
-                'rule-users-exc': $('select[name="rule-users-exc"]').val() || [],
-                'rule-products-inc': $('select[name="rule-products-inc"]').val() || [],
-                'rule-products-exc': $('select[name="rule-product-exc"]').val() || [],
-                'rule-price-range': {
-                    'price-start': $('input[name="price-start"', '.vicodin-price-range').val(),
-                    'price-end': $('input[name="price-end"]', '.vicodin-price-range').val(),
+                'rule_id': $('input[name="rule_id"]').val(),
+                'rule_name': $('input[name="rule_name"]').val(),
+                'rule_active': $('input[name="rule_active"]').is(':checked'),
+                'rule_categories_inc': $('select[name="rule_categories_inc"]').val() || [],
+                'rule_categories_exc': $('select[name="rule_categories_exc"]').val() || [],
+                'rule_tags_inc': $('select[name="rule_tags_inc"]').val() || [],
+                'rule_tags_exc': $('select[name="rule_tags_exc"]').val() || [],
+                'rule_users_inc': $('select[name="rule_users_inc"]').val() || [],
+                'rule_users_exc': $('select[name="rule_users_exc"]').val() || [],
+                'rule_products_inc': $('select[name="rule_products_inc"]').val() || [],
+                'rule_products_exc': $('select[name="rule_products_exc"]').val() || [],
+                'rule_price_range': {
+                    'price_start': $('input[name="price_start"', '.vicodin-price-range').val(),
+                    'price_end': $('input[name="price_end"]', '.vicodin-price-range').val(),
                 },
-                'payment-plans': $('select[name="payment-plans"]').val() || [],
-                'rule-apply-for': '',
-                'rule-plan-names': ''
+                'payment_plans': $('select[name="payment_plans"]').val() || [],
+                'rule_apply_for': '',
+                'rule_plan_names': ''
             }
 
             let applyFor = [];
@@ -307,13 +378,18 @@ jQuery(document).ready(function ($) {
                 }
             });
 
-            let plansSelected = $('select[name="payment-plans"]').find('option:selected')
+            let plansSelected = $('select[name="payment_plans"]').find('option:selected')
+
+            if ( applyFor.length === 0 ) {
+                applyFor.push('All');
+            }
+
             let planNames = $.map(plansSelected, function (option) {
                 return $(option).data('text');
             });
 
-            data['rule-plan-names'] = planNames.join(', ');
-            data['rule-apply-for'] = $.unique(applyFor).join(', ');
+            data['rule_plan_names'] = planNames.join(', ');
+            data['rule_apply_for'] = $.unique(applyFor).join(', ');
             return JSON.stringify(data);
         },
         loadAnimation: function () {

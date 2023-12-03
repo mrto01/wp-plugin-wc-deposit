@@ -2,8 +2,6 @@
 
 namespace VicoDIn\Inc;
 
-use Cassandra\Date;
-
 defined( 'ABSPATH' ) || exit;
 
 class Deposit_Front_End {
@@ -59,13 +57,12 @@ class Deposit_Front_End {
 //            add_filter( 'woocommerce_order_needs_payment', array( $this, 'vicodin_order_needs_payment' ), 10, 3 );
 
             add_action( 'vicodin_email_payment_schedule', array( $this, 'vicodin_display_payment_schedule' ) );
-
 		}
 	}
 
 
 	public static function instance() {
-		if ( null == self::$instance) {
+		if ( null === self::$instance ) {
 			self::$instance = new self();
 		}
 
@@ -73,51 +70,49 @@ class Deposit_Front_End {
 	}
 
     public function vicodin_order_class( $classname, $order_type, $order_id ) {
-        if ( $order_type == $this->deposit_type){
+        if ( $order_type === $this->deposit_type ) {
             return 'VicoDIn\Inc\Partial_Order';
         }
         return $classname;
     }
 
 	public function check_rule_match( $product, $rule ){
-
 		$user = wp_get_current_user()->roles[0];
 
-
-		if ( !empty( $rule['rule-products-inc'] ) && in_array( $product->get_id(), $rule['rule-products-inc'] ) ) {
+		if ( ! empty( $rule['rule_products_inc'] ) && in_array( $product->get_id(), $rule['rule_products_inc'] ) ) {
 			return true;
 		}
 
-		if ( !empty( $rule['rule-products-exc'] ) && in_array( $product->get_id(), $rule['rule-products-exc'] ) ) {
+		if ( ! empty( $rule['rule_products_exc'] ) && in_array( $product->get_id(), $rule['rule_products_exc'] ) ) {
 			return false;
 		}
 		// Price Range Check
 		$product_price = $product->get_price();
-		if ( $rule['rule-price-range']['price-start'] ) {
-			$price_start = $rule['rule-price-range']['price-start'];
-			$price_end = $rule['rule-price-range']['price-end'] === 0 ? INF : $rule['rule-price-range']['price-end'];
-			if ( $product_price < $price_start || $product_price > $price_end ) {
-				return false; // Exit early if price is outside the range
-			}
+        $price_start = isset( $rule['rule_price_range']['price_start'] ) ? floatval( $rule['rule_price_range']['price_start'] ) : 0;
+        $price_end = isset( $rule['rule_price_range']['price_start'] ) ? floatval( $rule['rule_price_range']['price_end'] ) : 0;
+        if ( $product_price < $price_start || $product_price > $price_end || $price_end < $price_start ) {
+            if ( 0 != $price_end ) {
+	            return false; // Exit early if price is outside the range
+            }
+        }
+
+		if ( ! empty( $rule['rule_categories_inc'] ) && ! array_intersect( $product->get_category_ids(), $rule['rule_categories_inc'] ) ) {
+			return false;
 		}
 
-		if( !empty( $rule['rule-categories-inc'] ) && !array_intersect($product->get_category_ids(), $rule['rule-categories-inc'] ) ){
+		if ( ! empty( $rule['rule_categories_exc'] ) && array_intersect( $product->get_category_ids(), $rule['rule_categories_exc'] ) ) {
 			return false;
 		}
-
-		if( !empty( $rule['rule-categories-exc'] ) && array_intersect($product->get_category_ids(), $rule['rule-categories-exc'] ) ){
+		if ( ! empty( $rule['rule_tags_inc'] ) && ! array_intersect( $product->get_tag_ids(), $rule['rule_tags_inc'] ) ) {
 			return false;
 		}
-		if( !empty( $rule['rule-tags-inc'] ) && !array_intersect($product->get_tag_ids(), $rule['rule-tags-inc'] ) ){
+		if ( ! empty( $rule['rule_tags_exc'] ) && array_intersect($product->get_tag_ids(), $rule['rule_tags_exc'] ) ) {
 			return false;
 		}
-		if( !empty( $rule['rule-tags-exc'] ) && array_intersect($product->get_tag_ids(), $rule['rule-tags-exc'] ) ){
+		if ( ! empty( $rule['rule_users_inc'] ) && ! in_array( $user, $rule['rule_users_inc'] ) ) {
 			return false;
 		}
-		if ( !empty( $rule['rule-users-inc'] ) && !in_array( $user, $rule['rule-users-inc'] ) ) {
-			return false;
-		}
-		if ( !empty( $rule['rule-users-exc'] ) && in_array( $user, $rule['rule-users-exc'] ) ) {
+		if ( ! empty( $rule['rule_users_exc'] ) && in_array( $user, $rule['rule_users_exc'] ) ) {
 			return false;
 		}
 		return true;
@@ -126,19 +121,19 @@ class Deposit_Front_End {
 	public function vicodin_get_deposit_block() {
 		global $product;
 
-        if ( !isset( $product ) ) {
+        if ( ! isset( $product ) ) {
             return;
         }
 
 		$deposit_settings = get_option( 'vicodin_deposit_setting' );
 		$product_disabled = $product->get_meta( 'vicodin_deposit_disabled' );
-		if( !is_user_logged_in() ){
+		if ( ! is_user_logged_in() ) {
 			return;
 		}
-		if( !$deposit_settings['enabled'] ) {
+		if ( ! $deposit_settings['enabled'] ) {
 			return;
 		}
-		if ( $product_disabled == 'yes') {
+		if ( 'yes' === $product_disabled ) {
 			return;
 		}
 
@@ -146,30 +141,34 @@ class Deposit_Front_End {
 		if ( empty($deposit_type) ) $deposit_type = 'global';
 
 		$plans = array();
-		if( $deposit_type == 'custom') {
+		if ( 'custom' === $deposit_type ) {
 			$plans = $product->get_meta( 'vicodin_custom_plans' );
+            $exists_plans = $product->get_meta( 'vicodin_exists_plans' );
             $price = $product->get_price();
             foreach ( $plans as $key => $plan ) {
                 $unit_type = $plan['unit-type'];
-                $total = $plan['total'];
+                $total = floatval( $plan['total'] );
 
-                if ( $unit_type == 'fixed' && $total != $price ) {
+                if ( 'fixed' === $unit_type && $total !== $price ) {
                     unset( $plans[ $key ] );
-                }elseif ( $unit_type == 'percentage' && $total != 100 ) {
+                }elseif ( 'percentage' === $unit_type && 100 != $total ) {
 	                unset( $plans[ $key ] );
                 }
             }
+			if ( is_array( $exists_plans ) && ! empty( $exists_plans ) ) {
+                $plans += $exists_plans;
+			}
 		}else {
 			$rules = get_option( 'vicodin_deposit_rule', array() );
 			foreach ( $rules as $rule ) {
-				if ( !$rule['rule-active'] ) {
+				if ( ! $rule['rule_active'] ) {
 					continue;
 				}
-				if ( $this->check_rule_match( $product, $rule ) ){
+				if ( $this->check_rule_match( $product, $rule ) ) {
 					$exists_plans = get_option( 'vicodin_payment_plan' ); // Get all plans in option table
 					$plans = array_filter( $exists_plans, function( $plan ) use ($rule){
-						if ( $plan['plan-active'] ){
-							return in_array( $plan['plan-id'], $rule['payment-plans'] );
+						if ( $plan['plan_active'] ) {
+							return in_array( $plan['plan_id'], $rule['payment_plans'] );
 						}
 						return '';
 					} );
@@ -178,7 +177,7 @@ class Deposit_Front_End {
 			}
 		}
 
-		if( empty( $plans )) {
+		if ( empty( $plans ) ) {
 			return;
 		}
 
@@ -186,34 +185,34 @@ class Deposit_Front_End {
 	}
 
 	public function frontend_enqueue_styles() {
-		wp_enqueue_style( 'woocommerce-front-end-' . $this->slug, $this->dist_url . 'woocommerce-front-end.css' );
+		wp_enqueue_style( 'woocommerce-front-end-' . $this->slug, $this->dist_url . 'woocommerce-front-end.css', '', VICODIN_CONST['version'] );
 	}
 	public function frontend_enqueue_scripts() {
-		wp_enqueue_script( 'woocommerce-front-end-' . $this->slug, $this->dist_url . 'woocommerce-front-end.js', ['jquery']);
+		wp_enqueue_script( 'woocommerce-front-end-' . $this->slug, $this->dist_url . 'woocommerce-front-end.js', ['jquery'], VICODIN_CONST['version'] , array( 'footer' => true ) );
 	}
 
 
 	public function vicodin_add_cart_item_data( $cart_item_data, $product_id, $variation_id) {
 
-		if( !isset( $_POST['vicodin-deposit-check'] ) ){
+		if ( ! isset( $_POST['vicodin-deposit-check'] ) ) {
 			return $cart_item_data;
 		}
 
 		$product = wc_get_product( $product_id );
 		$db_enabled = $this->check_deposit_enabled( $product );
 
-		if( !$db_enabled ) {
+		if ( ! $db_enabled ) {
 			return $cart_item_data;
 		}
 
-		if( $product->is_type('variable') ) {
+		if ( $product->is_type('variable') ) {
 			$product = wc_get_product( $variation_id );
 		}
 
 		$cart_item_data['vicodin_deposit'] = array(
 			'enable'       => true,
-			'plan-id'      => $_POST['vicodin-plan-select'],
-			'deposit-type' => $_POST['vicodin-deposit-type'],
+			'plan_id'      => sanitize_text_field( wp_unslash( $_POST['vicodin-plan-select'] ) ),
+			'deposit-type' => sanitize_text_field( wp_unslash( $_POST['vicodin-deposit-type'] ) ),
 		);
 
 		return $cart_item_data;
@@ -221,33 +220,35 @@ class Deposit_Front_End {
 
 	public function vicodin_get_item_data( $item_data, $cart_item  ) {
 		$enabled = $this->check_deposit_enabled( $cart_item['data'] );
-		if( $enabled ){
+		if ( $enabled ) {
 
 			if ( isset( $cart_item['vicodin_deposit'], $cart_item['vicodin_deposit']['deposit'] ) && $cart_item['vicodin_deposit']['enable'] ) {
 				$product = $cart_item['data'];
-				if ( !$product ) return $item_data;
 
-				$deposit = $cart_item['vicodin_deposit']['deposit'];
+				if ( ! $product ) {
+                    return $item_data;
+				}
+
+				$deposit        = $cart_item['vicodin_deposit']['deposit'];
 				$future_payment = $cart_item['vicodin_deposit']['future_payment'];
-				$fee = $cart_item['vicodin_deposit']['fee_total'];
-
-				$item_data[] = array (
-					'name'      => __( 'deposit amount', 'vico-deposit-and-installment' ),
-					'display'   => wc_price( $deposit, array( 'decimals' => wc_get_price_decimals() ) )
+				$fee            = $cart_item['vicodin_deposit']['fee_total'];
+				$item_data[]    = array (
+					'name'    => __( 'deposit amount', 'vico-deposit-and-installment' ),
+					'display' => wc_price( $deposit, array( 'decimals' => wc_get_price_decimals() ) )
 				);
 
-				$item_data[] = array(
-					'name'      => __( 'future payments', 'vico-deposit-and-installment' ),
-					'display'   => wc_price( $future_payment, array( 'decimals' => wc_get_price_decimals() ) )
+				$item_data[]    = array(
+					'name'    => __( 'future payments', 'vico-deposit-and-installment' ),
+					'display' => wc_price( $future_payment, array( 'decimals' => wc_get_price_decimals() ) )
 				);
 
-				$item_data[] = array (
-					'name'      => __( 'interest', 'vico-deposit-and-installment' ),
-					'display'   => wc_price( $fee, array( 'decimals' => wc_get_price_decimals() ) ),
-				);
-
+				if ( isset( $cart_item['vicodin_deposit']['fee_total'] ) && $cart_item['vicodin_deposit']['fee_total'] > 0 ) {
+					$item_data[] = array (
+						'name'    => __( 'fee', 'vico-deposit-and-installment' ),
+						'display' => wc_price( $fee, array( 'decimals' => wc_get_price_decimals() ) ),
+					);
+                }
 			}
-
 		}
 		return $item_data;
 	}
@@ -260,12 +261,14 @@ class Deposit_Front_End {
 
 		$vicodin_st = get_option('vicodin_deposit_setting');
 
-		if( isset( $vicodin_st['enabled'] ) && $vicodin_st['enabled'] ){
+		if ( isset( $vicodin_st['enabled'] ) && $vicodin_st['enabled'] ) {
 			$disabled = $product->get_meta('vicodin_deposit_disabled');
 
-            if ( empty( $disabled ) ) $disabled = 'no';
+            if ( empty( $disabled ) ) {
+                $disabled = 'no';
+            }
 
-			if ( $disabled == 'yes' ) {
+			if ( 'yes' === $disabled ) {
 				return false;
 			} else {
 				return true;
@@ -276,11 +279,11 @@ class Deposit_Front_End {
 	}
 
 	public function vicodin_before_calculate_totals() {
-		if (is_admin() && !defined('DOING_AJAX')) {
+		if ( is_admin() && ! defined('DOING_AJAX') ) {
 			return; // Prevent running in admin and not during AJAX requests
 		}
-		if (WC()->cart) {
-			foreach (WC()->cart->get_cart_contents() as $cart_item_key => $cart_item) {
+		if ( WC()->cart ) {
+			foreach ( WC()->cart->get_cart_contents() as $cart_item_key => $cart_item ) {
 				$this->vicodin_update_deposit_meta( $cart_item['data'], $cart_item['quantity'], $cart_item, $cart_item_key );
 			}
 		}
@@ -288,42 +291,42 @@ class Deposit_Front_End {
 
 	public function vicodin_update_deposit_meta( $product, $quantity, $cart_item_data, $cart_item_key ) {
 		if ( $product ) {
-			if( isset( $cart_item_data['bundled_by'] ) ) $cart_item_data['vicodin_deposit']['enable']  = 'no';
+			if ( isset( $cart_item_data['bundled_by'] ) ) $cart_item_data['vicodin_deposit']['enable']  = 'no';
 			$deposit_enabled = $this->check_deposit_enabled($product);
 
 			if ( $deposit_enabled ) {
 				$deposit_type = $cart_item_data['vicodin_deposit']['deposit-type'] ?? null;
 
-				if( $deposit_type ) {
+				if ( $deposit_type ) {
 
 					$payment_type = 'percentage';
 					$plan = null;
-					$plan_id = $cart_item_data['vicodin_deposit']['plan-id'];
-
-					switch( $deposit_type ) {
+					$plan_id = $cart_item_data['vicodin_deposit']['plan_id'];
+					switch ( $deposit_type ) {
 						case 'global':
-							$plan = get_option('vicodin_payment_plan')[ $plan_id] ?? null;
+							$plan = get_option('vicodin_payment_plan')[ $plan_id ] ?? null;
 							break;
 						case 'custom':
 							$plan = $product->get_meta('vicodin_custom_plans')[ $plan_id ] ?? null;
-							$payment_type = $plan['unit-type'] ?? null;
+                            if ( ! $plan ) {
+                                $plan = $product->get_meta('vicodin_exists_plans')[ $plan_id ] ?? null;
+                            }
+							$payment_type = $plan['unit-type'] ?? 'percentage';
 							break;
 					}
 
-					if( $plan ) {
+					if ( $plan ) {
 
 						$deposit = 0;
 						$fee = 0;
                         $deposit_fee = 0;
                         $item_sub_total = $cart_item_data['data']->get_price() * $quantity;
-
 						$tax_total = 0;
-
-						switch( $payment_type ) {
+						switch ( $payment_type ) {
 							case 'percentage':
 								$deposit = vicodin_get_due_amount( $plan['deposit'], $item_sub_total );
-								$deposit_fee = $fee = vicodin_get_due_amount( $plan['deposit-fee'], $item_sub_total );
-								foreach ( $plan['plan-schedule'] as $partial ){
+								$deposit_fee = $fee = vicodin_get_due_amount( $plan['deposit_fee'], $deposit );
+								foreach ( $plan['plan_schedule'] as $partial ) {
 									$partial_amount = vicodin_get_due_amount( $partial['partial'], $item_sub_total );
 									$fee += vicodin_get_due_amount( $partial['fee'], $partial_amount);
 								}
@@ -332,8 +335,8 @@ class Deposit_Front_End {
 								break;
 							case 'fixed':
 								$deposit = $plan['deposit'] * $quantity;
-								$deposit_fee = $fee = floatval($plan['deposit-fee']);
-								foreach ( $plan['plan-schedule'] as $partial ){
+								$deposit_fee = $fee = floatval($plan['deposit_fee']);
+								foreach ( $plan['plan_schedule'] as $partial ) {
 									$fee += floatval($partial['fee']);
 								}
 								$fee *= $quantity;
@@ -341,31 +344,29 @@ class Deposit_Front_End {
 								break;
 						}
 
-						if ( isset($cart_item_data['line_subtotal_tax'] ) ) {
+						if ( isset( $cart_item_data['line_subtotal_tax'] ) ) {
 							$tax_total = $cart_item_data['line_subtotal_tax'];
 						}
-
 //						Calculate tax later...
 
-						if( $deposit < $item_sub_total ){
+						if ( $deposit < $item_sub_total ) {
 							$cart_item_data['vicodin_deposit']['enable'] = 1 ;
 							$cart_item_data['vicodin_deposit']['deposit'] = $deposit;
-							$cart_item_data['vicodin_deposit']['future_payment'] = $item_sub_total- $deposit;
+							$cart_item_data['vicodin_deposit']['future_payment'] = $item_sub_total - $deposit;
 							$cart_item_data['vicodin_deposit']['tax_total'] = $tax_total;
 							$cart_item_data['vicodin_deposit']['total'] = $item_sub_total;
 							$cart_item_data['vicodin_deposit']['fee_total'] = $fee;
 							$cart_item_data['vicodin_deposit']['deposit_fee'] = $deposit_fee;
                             $cart_item_data['vicodin_deposit']['plan'] = $plan;
                             $cart_item_data['vicodin_deposit']['unit-type'] = $payment_type;
-						}else{
+						}else {
 							$cart_item_data['vicodin_deposit']['enable'] = 0 ;
 						}
 
-						WC()->cart->cart_contents[$cart_item_key]['vicodin_deposit'] =  $cart_item_data['vicodin_deposit'];
+						WC()->cart->cart_contents[ $cart_item_key ]['vicodin_deposit'] = $cart_item_data['vicodin_deposit'];
 					}
 				}
 			}
-
 		}
 	}
 
@@ -384,21 +385,23 @@ class Deposit_Front_End {
             <strong><?php echo wc_price( WC()->cart->get_total('edit') - WC()->cart->vwcdi_deposit_info['deposit_amount'], array( 'decimals' => wc_get_price_decimals() ) ) ?></strong>
             </td>
         </tr>
-        <tr class="order-interest">
-            <th><?php esc_html_e('Total interest', 'vico-deposit-and-installment' ); ?></th>
-            <td data-title="<?php esc_attr_e( 'order-interest', 'vico-deposit-and-installment' ) ?>">
-            <strong><?php echo wc_price( WC()->cart->vwcdi_deposit_info['fee_total'], array( 'decimals' => wc_get_price_decimals() ) ) ?></strong>
-            </td>
-        </tr>
+        <?php if ( isset( WC()->cart->vwcdi_deposit_info['fee_total'] ) && WC()->cart->vwcdi_deposit_info['fee_total'] > 0 ) { ?>
+                <tr class="order-vwcdi-fee">
+                    <th><?php esc_html_e('Fee', 'vico-deposit-and-installment' ); ?></th>
+                    <td data-title="<?php esc_attr_e( 'order-vwcdi-fee', 'vico-deposit-and-installment' ) ?>">
+                        <strong><?php echo wc_price( WC()->cart->vwcdi_deposit_info['fee_total'], array( 'decimals' => wc_get_price_decimals() ) ) ?></strong>
+                    </td>
+                </tr>
 		<?php
+	        }
         }
 	}
 
 	public function vicodin_cart_needs_payment ( $needs_payment, $cart ){
 		$deposit_enabled = isset(WC()->cart->vwcdi_deposit_info['deposit_enabled'], WC()->cart->vwcdi_deposit_info['deposit_amount'])
-		                   && WC()->cart->vwcdi_deposit_info['deposit_enabled'] === true && WC()->cart->vwcdi_deposit_info['deposit_amount'] <= 0;
+		                   && true === WC()->cart->vwcdi_deposit_info['deposit_enabled'] && WC()->cart->vwcdi_deposit_info['deposit_amount'] <= 0;
 
-		if ($deposit_enabled) {
+		if ( $deposit_enabled ) {
 			$needs_payment = false;
 		}
 		return $needs_payment;
@@ -414,7 +417,7 @@ class Deposit_Front_End {
 
 		$deposit_enabled = false;
 
-		foreach( $cart->get_cart_contents() as $cart_item ){
+		foreach ( $cart->get_cart_contents() as $cart_item ) {
 			$enabled = $this->check_deposit_enabled( $cart_item['data'] );
 
             if ( $enabled && isset( $cart_item['vicodin_deposit'] , $cart_item['vicodin_deposit']['deposit']) && $cart_item['vicodin_deposit']['enable'] ) {
@@ -446,7 +449,7 @@ class Deposit_Front_End {
 		$deposit_shipping_taxes = 0.0;
 
 
-		$division = $items_total == 0 ? 1 : $items_total;
+		$division = ( 0 == $items_total  ) ? 1 : $items_total;
 		$deposit_percentage = $deposit_amount * 100 / floatval($division);
 
 
@@ -475,17 +478,17 @@ class Deposit_Front_End {
 				$deposit_taxes = $deposit_percentage * $cart->tax_total / 100;
 				break;
 		}
-		$remaining_amounts['tax'] =  $cart->tax_total - $deposit_taxes;
+		$remaining_amounts['tax'] = $cart->tax_total - $deposit_taxes;
 
 		// fees handling
 
 		$fee_taxes = $cart->get_fee_tax();
-		switch ($fees_handling) {
-			case 'deposit' :
+		switch ( $fees_handling ) {
+			case 'deposit':
 				$deposit_fees = floatval($cart->fee_total + $fee_taxes);
 				break;
 
-			case 'split' :
+			case 'split':
 				$deposit_fees = floatval($cart->fee_total + $fee_taxes) * $deposit_percentage / 100;
 				break;
 		}
@@ -493,12 +496,12 @@ class Deposit_Front_End {
 
 		// Shipping handling
 
-		switch ($shipping_handling) {
-			case 'deposit' :
+		switch ( $shipping_handling ) {
+			case 'deposit':
 				$deposit_shipping = $cart->shipping_total;
 				break;
 
-			case 'split' :
+			case 'split':
 				$deposit_shipping = $cart->shipping_total * $deposit_percentage / 100;
 				break;
 		}
@@ -506,12 +509,12 @@ class Deposit_Front_End {
 
 		// Shipping taxes handling.
 
-		switch ($shipping_taxes_handling) {
-			case 'deposit' :
+		switch ( $shipping_taxes_handling ) {
+			case 'deposit':
 				$deposit_shipping_taxes = $cart->shipping_tax_total;
 				break;
 
-			case 'split' :
+			case 'split':
 				$deposit_shipping_taxes = $cart->shipping_tax_total * $deposit_percentage / 100;
 				break;
 		}
@@ -524,12 +527,12 @@ class Deposit_Front_End {
 		}
 
 		WC()->cart->vwcdi_deposit_info = array(
-			'deposit_enabled'   => $deposit_enabled,
-			'deposit_amount'    => $deposit_amount,
-            'fee_total'         => $fee_total,
+			'deposit_enabled' => $deposit_enabled,
+			'deposit_amount'  => $deposit_amount,
+            'fee_total'       => $fee_total,
 		);
 
-		if( $deposit_enabled ) {
+		if ( $deposit_enabled ) {
 			$payment_schedule = $this->build_payment_schedule( $remaining_amounts, $deposit_amount, $total, $deposit_fee );
 			WC()->cart->vwcdi_deposit_info['payment_schedule'] = $payment_schedule;
 		}
@@ -538,66 +541,63 @@ class Deposit_Front_End {
 	}
 
 	public function build_payment_schedule( $remaining_amounts, $deposit, $total, $deposit_fee ){
-		$current_date = new \DateTime();
-		$current_date_string = $current_date->format('F j, Y');
-
-        $next_payments = $total - $deposit;
+		$current_date         = new \DateTime();
+		$current_date_string  = $current_date->getTimestamp();
+        $next_payments        = $total - $deposit;
         $origin_next_payments = $next_payments + $remaining_amounts['discount'] - $remaining_amounts['tax'] - $remaining_amounts['fee'] - $remaining_amounts['shipping'] - $remaining_amounts['shipping_tax'];
-
-        $schedule = array();
-
-        $plans = array();
+        $schedule             = array();
+        $plans                = array();
         foreach ( WC()->cart->get_cart_contents() as $cart_item ) {
-           if ( isset( $cart_item['vicodin_deposit'] , $cart_item['vicodin_deposit']['deposit']) && $cart_item['vicodin_deposit']['enable']) {
+           if ( isset( $cart_item['vicodin_deposit'], $cart_item['vicodin_deposit']['deposit']) && $cart_item['vicodin_deposit']['enable'] ) {
 	           $plans[] = vicodin_get_payment_dues( $cart_item['vicodin_deposit']['plan'], $cart_item['line_subtotal'] );
            }
         }
 
        foreach ( $plans as $plan ) {
-           foreach ( $plan as $partial) {
+           foreach ( $plan as $partial ) {
                $date = $partial['date'];
                 if ( array_key_exists( $date, $schedule ) ) {
                     $schedule[ $date ]['amount'] += $partial['amount'];
                     $schedule[ $date ]['fee'] += $partial['fee'];
                 }else {
                     $schedule[ $date ] = array(
-                            'id'        => '',
-                            'type'      => 'partial_payment',
-                            'date'      => $date,
-                            'amount'    => $partial['amount'],
-                            'fee'       => $partial['fee'],
+                        'id'     => '',
+                        'type'   => 'partial_payment',
+                        'date'   => $date,
+                        'amount' => $partial['amount'],
+                        'fee'    => $partial['fee'],
                     );
                 }
            }
        }
 
-       foreach( $schedule as &$payment ) {
-           $rate = $payment['amount']  / $origin_next_payments ;
+       foreach ( $schedule as &$payment ) {
+           $rate = $payment['amount'] / $origin_next_payments ;
            $amount = $rate * $next_payments;
            $fee = $payment['fee'];
            $payment['total'] = $amount + $fee;
        }
 
-       $schedule[ $current_date_string ] =  array(
-               'id'        => '',
-               'type'      => 'deposit',
-               'date'      => $current_date_string,
-               'amount'    => $deposit,
-               'fee'       => $deposit_fee,
-               'total'     => $deposit + $deposit_fee
-		);
+       $schedule[ $current_date_string ] = array(
+           'id'     => '',
+           'type'   => 'deposit',
+           'date'   => $current_date_string,
+           'amount' => $deposit,
+           'fee'    => $deposit_fee,
+           'total'  => $deposit + $deposit_fee
+       );
 
         usort( $schedule, function ( $a, $b ) {
-            return strtotime( $a['date'] ) - strtotime( $b['date'] );
+            return $a['date'] - $b['date'];
         });
 
         return $schedule;
 	}
 
     public function vicodin_checkout_create_order_line_item( $item, $cart_item_key, $values, $order ) {
-	    if ($order->get_type() != $this->deposit_type ){
+	    if ( $order->get_type() != $this->deposit_type ) {
 		    $deposit_meta = isset($values['vicodin_deposit']) ? $values['vicodin_deposit'] : false;
-		    if ($deposit_meta) {
+		    if ( $deposit_meta ) {
 			    $item->add_meta_data('vicodin_deposit_meta', $deposit_meta, true);
 		    }
 	    }
@@ -605,7 +605,7 @@ class Deposit_Front_End {
     public function vicodin_checkout_update_order_meta( $order_id, $data) {
         $order = wc_get_order( $order_id );
 
-        if ( $order->get_type() == $this->deposit_type) {
+        if ( $order->get_type() === $this->deposit_type ) {
             return;
         }
 
@@ -616,10 +616,10 @@ class Deposit_Front_End {
             $interest_total = WC()->cart->vwcdi_deposit_info['fee_total'];
 
             $order->add_meta_data( 'vicodin_deposit_payment_schedule', $schedule, true);
-            $order->add_meta_data( 'vicodin_deposit_amount', $deposit, true);
-            $order->add_meta_data( 'vicodin_future_payment', $remaining, true);
-            $order->add_meta_data( 'vicodin_interest_total', $interest_total , true );
-            $order->add_meta_data( 'vicodin_is_deposit_order', true );
+            $order->add_meta_data( '_vicodin_deposit_amount', $deposit, true);
+            $order->add_meta_data( '_vicodin_future_payment', $remaining, true);
+            $order->add_meta_data( '_vicodin_interest_total', $interest_total , true );
+            $order->add_meta_data( '_vicodin_is_deposit_order', true );
 
             $order->save();
         }
@@ -627,17 +627,13 @@ class Deposit_Front_End {
 
     public function vicodin_available_payment_gateways( $available_gateways ) {
 
-	    $vicodin_st = get_option( 'vicodin_deposit_setting' );
+	    $vicodin_st       = get_option( 'vicodin_deposit_setting' );
+	    $pay_slug         = get_option('woocommerce_checkout_pay_endpoint', 'order-pay');
+        $order_id         = absint( get_query_var( $pay_slug ) );
+        $order            = wc_get_order( $order_id );
+        $is_deposit_order = false;
 
-	    $pay_slug = get_option('woocommerce_checkout_pay_endpoint', 'order-pay');
-
-        $order_id = absint( get_query_var( $pay_slug ) );
-
-        $order = wc_get_order( $order_id );
-
-        $is_deposit_order =  false;
-
-        if ( isset( WC()->cart->vwcdi_deposit_info, WC()->cart->vwcdi_deposit_info['deposit_enabled'] ) && WC()->cart->vwcdi_deposit_info['deposit_enabled'] ){
+        if ( isset( WC()->cart->vwcdi_deposit_info, WC()->cart->vwcdi_deposit_info['deposit_enabled'] ) && WC()->cart->vwcdi_deposit_info['deposit_enabled'] ) {
             $is_deposit_order = true;
         }
 
@@ -648,7 +644,7 @@ class Deposit_Front_End {
         if ( $is_deposit_order ) {
 	        $exclude_payment_methods = $vicodin_st['exclude_payment_methods'] ?? array();
 	        foreach ( $available_gateways as $slug => $gateway ) {
-		        if ( in_array( $slug, $exclude_payment_methods ) ){
+		        if ( in_array( $slug, $exclude_payment_methods, true ) ) {
 			        unset( $available_gateways[ $slug ] );
 		        }
 	        }
@@ -658,33 +654,36 @@ class Deposit_Front_End {
     }
 
     public function vicodin_get_order_item_totals( $total_rows, $order  ) {
-        $is_deposit = $order->get_meta( 'vicodin_is_deposit_order' );
-        if( $is_deposit ) {
-            $status = $order->get_status();
-            $deposit_amount = $order->get_meta( 'vicodin_deposit_amount' );
-            $remaining_amount = $order->get_meta( 'vicodin_future_payment' );
-            $interest_total = floatval( $order->get_meta( 'vicodin_interest_total' ) );
+        $is_deposit = $order->get_meta( '_vicodin_is_deposit_order' );
 
-	        $received_slug = get_option('woocommerce_checkout_order_received_endpoint', 'order-received' );
-	        $pay_slug = get_option('woocommerce_checkout_order_pay_endpoint', 'order-pay' );
-
-	        $is_checkout = ( get_query_var( $received_slug ) === '' && is_checkout() );
-	        $is_email = did_action( 'woocommerce_email_order_details' ) > 0;
-	        $is_remaining = !!get_query_var( $pay_slug ) && $status === 'partially-paid';
-
-	        if (!$is_checkout || $is_email) {
+        if ( $is_deposit ) {
+            $status           = $order->get_status();
+            $deposit_amount   = $order->get_meta( '_vicodin_deposit_amount' );
+            $remaining_amount = $order->get_meta( '_vicodin_future_payment' );
+            $interest_total   = floatval( $order->get_meta( '_vicodin_interest_total' ) );
+	        $received_slug    = get_option('woocommerce_checkout_order_received_endpoint', 'order-received' );
+	        $pay_slug         = get_option('woocommerce_checkout_order_pay_endpoint', 'order-pay' );
+	        $is_checkout      = ( get_query_var( $received_slug ) === '' && is_checkout() );
+	        $is_email         = did_action( 'woocommerce_email_order_details' ) > 0;
+            $currency_args    = array(
+                'currency' => $order->get_currency(),
+                'decimals' => wc_get_price_decimals()
+            );
+	        if ( ! $is_checkout || $is_email ) {
 		        $total_rows['vwcdi_deposit_amount'] = array(
 			        'label' => __( 'Deposit', 'vico-deposit-and-installment' ),
-			        'value' => wc_price($deposit_amount, array('currency' => $order->get_currency(), 'decimals' => wc_get_price_decimals() ) )
+			        'value' => wc_price($deposit_amount, $currency_args )
 		        );
 		        $total_rows['vwcdi_future_payment'] = array(
 			        'label' => __( 'Future payments', 'vico-deposit-and-installment' ),
-			        'value' => wc_price( $remaining_amount, array('currency' => $order->get_currency(), 'decimals' => wc_get_price_decimals() ) )
+			        'value' => wc_price( $remaining_amount, $currency_args )
 		        );
-		        $total_rows['vwcdi_interest_total'] = array(
-			        'label' => __( 'Total interest', 'vico-deposit-and-installment' ),
-			        'value' => wc_price( $interest_total, array('currency' => $order->get_currency(), 'decimals' => wc_get_price_decimals() ) )
-		        );
+		        if ( $interest_total ) {
+			        $total_rows['vwcdi_fee_total'] = array(
+				        'label' => __( 'Fee', 'vico-deposit-and-installment' ),
+				        'value' => wc_price( $interest_total, $currency_args )
+			        );
+		        }
 	        }
 
 //	        if ($is_checkout && !$is_remaining && !$is_email) {
@@ -714,20 +713,19 @@ class Deposit_Front_End {
     }
 
     public function vicodin_create_order( $order_id, $checkout ) {
-        if ( !isset( WC()->cart->vwcdi_deposit_info['deposit_enabled'] ) || !WC()->cart->vwcdi_deposit_info['deposit_enabled'] ) {
+        if ( ! isset( WC()->cart->vwcdi_deposit_info['deposit_enabled'] ) || ! WC()->cart->vwcdi_deposit_info['deposit_enabled'] ) {
             return null;
         }
 
         $data = $checkout->get_posted_data();
 
-        try{
-
-	        $cart_hash = WC()->cart->get_cart_hash();
-	        $order_id = absint(WC()->session->get('order_awaiting_payment'));
-	        $order = $order_id ? wc_get_order($order_id) : null;
+        try {
+	        $cart_hash          = WC()->cart->get_cart_hash();
+	        $order_id           = absint(WC()->session->get('order_awaiting_payment'));
+	        $order              = $order_id ? wc_get_order($order_id) : null;
 	        $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
 
-	        if ($order && $order->has_cart_hash($cart_hash) && $order->has_status(array('pending', 'failed'))) {
+	        if ( $order && $order->has_cart_hash( $cart_hash ) && $order->has_status( array('pending', 'failed') ) ) {
 		        do_action('woocommerce_resume_order', $order_id);
 		        $order->remove_order_items();
 	        } else {
@@ -736,20 +734,20 @@ class Deposit_Front_End {
 
 	        $fields_prefix = array(
 		        'shipping' => true,
-		        'billing' => true,
+		        'billing'  => true,
 	        );
 
 	        $shipping_fields = array(
 		        'shipping_method' => true,
-		        'shipping_total' => true,
-		        'shipping_tax' => true,
+		        'shipping_total'  => true,
+		        'shipping_tax'    => true,
 	        );
 
 	        foreach ( $data as $key => $value ) {
 		        if ( is_callable( array( $order, "set_{$key}" ) ) ) {
 			        $order->{"set_{$key}"}($value);
-		        } elseif ( isset($fields_prefix[ current( explode('_', $key ) ) ] ) ) {
-			        if ( !isset($shipping_fields[$key] ) ) {
+		        } elseif ( isset( $fields_prefix[ current( explode('_', $key ) ) ] ) ) {
+			        if ( ! isset( $shipping_fields[ $key ] ) ) {
 				        $order->update_meta_data('_' . $key, $value);
 			        }
 		        }
@@ -777,7 +775,7 @@ class Deposit_Front_End {
 
 	        $order->read_meta_data();
 	        $payment_schedule = $order->get_meta('vicodin_deposit_payment_schedule');
-	        $deposit_id = null;
+	        $deposit_id       = null;
 
             if ( $payment_schedule ) {
                 foreach ( $payment_schedule as $partial_key => $partial ) {
@@ -786,12 +784,10 @@ class Deposit_Front_End {
 
 	                $partial_payment->set_customer_id( apply_filters( 'woocommerce_checkout_customer_id', get_current_user_id() ) );
 
-                    $amount = $partial['total'];
-
-	                $name = esc_html__('Partial Payment for order %s', 'vico-deposit-and-installment');
+                    $amount               = $partial['total'];
+	                $name                 = esc_html__('Partial Payment for order %s', 'vico-deposit-and-installment' );
 	                $partial_payment_name = apply_filters('vicodin_deposit_partial_payment_name', sprintf( $name, $order->get_order_number() . '-' . $partial_key ), $partial, $order->get_id());
-
-	                $item = new \WC_Order_Item_Fee();
+	                $item                 = new \WC_Order_Item_Fee();
 
 	                $item->set_props(
 		                array(
@@ -805,29 +801,29 @@ class Deposit_Front_End {
 
 	                $partial_payment->set_parent_id( $order->get_id() );
 	                $partial_payment->add_meta_data( 'is_vat_exempt', $order_vat_exempt);
-	                $partial_payment->add_meta_data( 'vicodin_partial_payment_type', $partial['type'] );
-                    $partial_payment->add_meta_data( 'vicodin_partial_payment_date', $partial['date'] );
+	                $partial_payment->add_meta_data( '_vicodin_partial_payment_type', $partial['type'] );
+                    $partial_payment->add_meta_data( '_vicodin_partial_payment_date', $partial['date'] );
 	                $partial_payment->set_currency(get_woocommerce_currency());
 	                $partial_payment->set_prices_include_tax('yes' === get_option('woocommerce_prices_include_tax'));
 	                $partial_payment->set_customer_ip_address(\WC_Geolocation::get_ip_address());
 	                $partial_payment->set_customer_user_agent($user_agent);
 	                $partial_payment->set_total($amount);
 	                $partial_payment->save();
-	                $payment_schedule[$partial_key]['id'] = $partial_payment->get_id();
+	                $payment_schedule[ $partial_key ]['id'] = $partial_payment->get_id();
 
-                    $this->add_apifw_invoice_meta($partial_payment, $amount, $partial_payment_name);
+                    $this->add_apifw_invoice_meta( $partial_payment, $amount, $partial_payment_name );
 
 	                $order_number_meta = $order->get_meta('_alg_wc_full_custom_order_number' );
-	                if( $order_number_meta ){
+	                if ( $order_number_meta ) {
 		                $partial_payment->add_meta_data('_alg_wc_full_custom_order_number', $order_number_meta);
 	                }
 
 //	                 Added for payable payment support
-	                foreach ($data as $key => $value) {
-		                if (is_callable(array($order, "set_{$key}"))) {
+	                foreach ( $data as $key => $value ) {
+		                if ( is_callable(array($order, "set_{$key}") ) ) {
 			                   $partial_payment->{"set_{$key}"}($value);
-		                } elseif (isset($fields_prefix[current(explode('_', $key))])) {
-			                if (!isset($shipping_fields[$key])) {
+		                } elseif ( isset( $fields_prefix[ current( explode('_', $key) ) ] ) ) {
+			                if ( ! isset( $shipping_fields[ $key ] ) ) {
 				                $partial_payment->update_meta_data('_' . $key, $value);
 			                }
 		                }
@@ -835,7 +831,7 @@ class Deposit_Front_End {
 
                     $partial_payment->save();
 
-                    if ( $partial['type'] === 'deposit' ) {
+                    if ( 'deposit' === $partial['type'] ) {
                         $deposit_id = $partial_payment->get_id();
 	                    $partial_payment->set_payment_method($available_gateways[ $data['payment_method'] ] ?? $data['payment_method'] );
 	                    $partial_payment->save();
@@ -852,17 +848,17 @@ class Deposit_Front_End {
 
     public function vicodin_my_account_my_orders_actions( $actions, $order ) {
         $status = $order->get_status();
-        $is_deposit = $order->get_meta('vicodin_is_deposit_order');
-        if ( $status === 'installment' || $status === 'pending') {
+        $is_deposit = $order->get_meta('_vicodin_is_deposit_order');
+        if ( 'installment' === $status || 'pending' === $status ) {
 
 	        $args = array(
-		        'post_parent' => $order->get_id(),
+		        'post_parent'     => $order->get_id(),
 		        'parent_order_id' => $order->get_id(),
-		        'post_type'   => 'vwcdi_partial_order',
-		        'numberposts' => -1,
-		        'post_status' => 'pending',
-		        'orderby'     => 'ID',
-		        'order'       => 'ASC',
+		        'post_type'       => 'vwcdi_partial_order',
+		        'numberposts'     => -1,
+		        'post_status'     => 'pending',
+		        'orderby'         => 'ID',
+		        'order'           => 'ASC',
 	        );
 
             $order_need_payment = wc_get_orders( $args )[0] ?? null;
@@ -884,16 +880,15 @@ class Deposit_Front_End {
         if ( $order && $order->get_type() == $this->deposit_type ) {
 	        remove_action('woocommerce_thankyou', 'woocommerce_order_details_table', 10);
 	        remove_action('woocommerce_order_details_after_order_table', 'woocommerce_order_again_button');
-	        if( apply_filters('vicodin_disable_orders_details_table', true) ){
+	        if ( apply_filters('vicodin_disable_orders_details_table', true ) ) {
                 $order_id = $order->get_parent_id();
                 include __DIR__ . '/views/partial-order-details.php';
 	        }
-
         }
     }
 
     public function vicodin_order_details_after_order_table( $order ) {
-	    $is_deposit_order = $order->get_meta('vicodin_is_deposit_order');
+	    $is_deposit_order = $order->get_meta('_vicodin_is_deposit_order');
         $schedule = $order->get_meta('vicodin_deposit_payment_schedule');
 
         if ( $is_deposit_order && $schedule ) {
@@ -901,12 +896,12 @@ class Deposit_Front_End {
         }
     }
     public function vicodin_get_checkout_payment_url( $url, $order ) {
-        $is_deposit = $order->get_meta('vicodin_is_deposit_order');
+        $is_deposit = $order->get_meta('_vicodin_is_deposit_order');
 
-        if ( $is_deposit && $order->get_type() != $this->deposit_type ) {
+        if ( $is_deposit && $order->get_type() !== $this->deposit_type ) {
 	        $schedule = $order->get_meta('vicodin_deposit_payment_schedule');
 
-            if (is_array($schedule) && !empty($schedule)) {
+            if ( is_array( $schedule ) && ! empty( $schedule ) ) {
 	            foreach ( $schedule as $payment ) {
 		            $payment_order = wc_get_order( $payment['id'] );
 
@@ -938,10 +933,10 @@ class Deposit_Front_End {
             $order_total = $parent->get_total();
             $suborders_total = 0;
 	        $args = array(
-		        'post_parent'       => $parent_id,
-		        'parent_order_id'   => $parent_id,
-		        'post_type'         => 'vwcdi_partial_order',
-		        'numberposts'       => -1,
+		        'post_parent'     => $parent_id,
+		        'parent_order_id' => $parent_id,
+		        'post_type'       => 'vwcdi_partial_order',
+		        'numberposts'     => -1,
 	        );
 
             $suborders = wc_get_orders( $args );
@@ -949,13 +944,13 @@ class Deposit_Front_End {
             $has_on_hold = false;
 
             foreach ( $suborders as $suborder ) {
-                if ( $suborder->get_status() === 'on-hold') {
+                if ( 'on-hold' === $suborder->get_status() ) {
                     $has_on_hold = true;
-                }elseif ( $suborder->get_status() === 'completed' ){
+                }elseif ( 'completed' === $suborder->get_status() ) {
                     $suborders_total += $suborder->get_total();
                 }
             }
-            if ( $new_status === 'completed' ) {
+            if ( 'completed' === $new_status ) {
                 if ( ceil( $suborders_total ) >= $order_total ) {
                     $parent->set_status( 'processing' );
                     $parent->save();
@@ -963,11 +958,11 @@ class Deposit_Front_End {
                     $parent->set_status( 'installment' );
                     $parent->save();
                 }
-            }else if ( $new_status != 'processing' ) {
-                if ( $new_status === 'pending' && $suborders_total > 0 ) {
+            }elseif ( 'processing' !== $new_status ) {
+                if ( 'pending' === $new_status && $suborders_total > 0 ) {
 	                $parent->set_status( 'installment' );
 	                $parent->save();
-                }elseif ( $has_on_hold ){
+                }elseif ( $has_on_hold ) {
 	                $parent->set_status( 'on-hold' );
 	                $parent->save();
                 } else {
@@ -975,8 +970,6 @@ class Deposit_Front_End {
                     $parent->save();
                 }
             }
-
-
         }
     }
 
@@ -987,35 +980,36 @@ class Deposit_Front_End {
 	function add_apifw_invoice_meta($partial_payment, $amount, $name){
 
 		$data = array(
-			'id' => false,
-			'subtotal' => $amount,
-			'subtotal_tax' => 0,
-			'total' => $amount,
-			'total_tax' => 0,
-			'price' => $amount,
-			'price_after_discount' => $amount,
-			'quantity' => '',
-			'weight' => '',
-			'total_weight' => '',
-			'weight_unit' => '',
-			'tax_class' => '',
-			'tax_status' => '',
-			'tax_percent' => 0,
-			'tax_label' => '',
-			'tax_pair' => '',
-			'tax_array' => '',
-			'name' => $name,
-			'product_id' => '',
-			'variation_id' => '',
-			'product_url' => '',
+			'id'                    => false,
+			'subtotal'              => $amount,
+			'subtotal_tax'          => 0,
+			'total'                 => $amount,
+			'total_tax'             => 0,
+			'price'                 => $amount,
+			'price_after_discount'  => $amount,
+			'quantity'              => '',
+			'weight'                => '',
+			'total_weight'          => '',
+			'weight_unit'           => '',
+			'tax_class'             => '',
+			'tax_status'            => '',
+			'tax_percent'           => 0,
+			'tax_label'             => '',
+			'tax_pair'              => '',
+			'tax_array'             => '',
+			'name'                  => $name,
+			'product_id'            => '',
+			'variation_id'          => '',
+			'product_url'           => '',
 			'product_thumbnail_url' => '',
-			'sku' => '',
-			'meta' => '',
-			'formatted_meta' => '',
-			'raw_meta' => '',
-			'category' => ''
+			'sku'                   => '',
+			'meta'                  => '',
+			'formatted_meta'        => '',
+			'raw_meta'              => '',
+			'category'              => ''
 		);
 
 		$partial_payment->add_meta_data( 'vicodin_apifw_invoice_meta', $data );
 	}
+
 }

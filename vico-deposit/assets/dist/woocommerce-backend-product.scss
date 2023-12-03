@@ -11,14 +11,20 @@
   line-height: 38px !important;
 }
 
-.vicodin-plan-schedule {
+.vicodin-plan_schedule {
   tbody td {
     padding: 0 10px;
     height: 80px;
+    select {
+      margin-top: 0 !important;
+    }
+    p{
+      position: relative;
 
-    input, select {
-      width: 100% !important;
-      min-width: unset !important;
+      input, select {
+        width: 100% !important;
+        min-width: unset !important;
+      }
     }
 
   }
@@ -39,6 +45,7 @@
       border: 1px solid currentColor;
       border-radius: 50%;
       margin-right: 5px;
+      transform:translateY(10px);
     }
   }
 }
@@ -60,4 +67,8 @@
     top: 0;
     background-color: rgba(255, 255, 255, 0.3);
   }
+}
+
+.vicodin-error-message{
+  color:red;
 }
