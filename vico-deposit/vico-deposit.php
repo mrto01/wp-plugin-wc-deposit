@@ -57,7 +57,6 @@ if ( ! class_exists( 'WP_Vico_Deposit' ) ) {
 		}
 
 		public function plugin_loaded() {
-
 			$this->checker = new WP_Error();
 			global $wp_version;
 			$php_require = '7.0';

@@ -9,5 +9,9 @@ class Partial_Order extends \WC_Order {
 		return VICODIN_CONST['order_type'];
 	}
 
+    public function is_editable()
+    {
+        return false;
+    }
 }
 

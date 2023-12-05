@@ -2,8 +2,6 @@
 
 namespace VicoDIn\Inc;
 
-defined( 'ABSPATH' ) || exit;
-
 class Deposit_Order_Type {
 
 	static $instance = null;
@@ -16,8 +14,11 @@ class Deposit_Order_Type {
 		$this->set_suborder_options();
 		add_action( 'init', array( $this, 'register_order_type' ) );
 		add_action( 'init', array( $this, 'register_order_status' ) );
+        add_action( 'current_screen', array( $this, 'vicodin_setup_screen') );
+
 		if ( vicodin_check_wc_active() ) {
 			add_action( 'load-' . $this->screen_id, array( $this, 'vicodin_handle_load_page_action' ), 9 );
+            add_filter( 'woocommerce_admin_order_should_render_refunds', array( $this, 'vicodin_handle_render_refunds'), 10, 2 );
 			add_filter('wc_order_statuses', array( $this, 'add_custom_order_status_to_order_statuses' ) );
 			add_filter( 'woocommerce_' . $this->order_type . '_list_table_columns', array( $this, 'vicodin_partial_order_columns' ));
 			add_filter( 'woocommerce_' . $this->order_type . '_list_table_order_css_classes', array( $this, 'vicodin_partial_order_row'), 10, 2 );
@@ -29,15 +30,22 @@ class Deposit_Order_Type {
 
 	public static function instance() {
 		if ( null == self::$instance ) {
-			self::$instance = new self;
-		}
-
+            self::$instance = new self;
+        }
 		return self::$instance;
 	}
 
 	public function set_suborder_options() {
 		$this->order_type = VICODIN_CONST['order_type'];
-		$this->screen_id = 'woocommerce_page_wc-orders--' . $this->order_type;
+
+        $wc_version = get_option('woocommerce_version');
+
+        if( version_compare( $wc_version, '8.3', '<') ) {
+            $this->screen_id = $this->order_type;
+        }else {
+            $this->screen_id = 'woocommerce_page_wc-orders--' . $this->order_type;
+        }
+
 	}
 	function register_order_type(){
 
@@ -129,10 +137,30 @@ class Deposit_Order_Type {
 		$action = isset( $_GET['action'] ) ? sanitize_text_field( wp_unslash( $_GET['action'] ) ) : '';
 		if ( 'new' === $action ) {
 			wp_die( esc_html__( 'Creating a new suborder is not supported.', 'vico-deposit-and-installment' ) );
-		}else if ( 'edit' === $action ) {
-			add_action( 'woocommerce_order_item_add_action_buttons', array( $this, 'vicodin_remove_suborder_action_buttons' ) );
 		}
 	}
+
+    public function vicodin_setup_screen(){
+        global $wc_list_table;
+
+
+        $screen_id = false;
+
+        if ( function_exists( 'get_current_screen' ) ) {
+            $screen    = get_current_screen();
+            $screen_id = isset( $screen, $screen->id ) ? $screen->id : '';
+        }
+
+        switch ( $screen_id ) {
+            case 'edit-' . $this->screen_id:
+                $wc_list_table = new List_Table_Suborder();
+                break;
+        }
+
+        // Ensure the table handler is only loaded once. Prevents multiple loads if a plugin calls check_ajax_referer many times.
+        remove_action( 'current_screen', array( $this, 'setup_screen' ) );
+        remove_action( 'check_ajax_referer', array( $this, 'setup_screen' ) );
+    }
 
 	public function vicodin_partial_order_columns( $columns ) {
 		$columns = array(
@@ -217,12 +245,14 @@ class Deposit_Order_Type {
 		);
 	}
 
-//	Remove action button in suborder edit page
+    public function vicodin_handle_render_refunds( $order_id, $order ) {
+        $order = wc_get_order( $order );
 
-	public function vicodin_remove_suborder_action_buttons( $order ) {
-		wp_enqueue_script( 'remove_action_buttons', VICODIN_CONST['dist_url'] . 'vicodin-inline-script.js', ['jquery'], VICODIN_CONST['version']);
-		$inline_scripts = "jQuery(document).ready(function($) { $('.wc-order-bulk-actions').remove(); });";
-		wp_add_inline_script('remove_action_buttons', $inline_scripts);
-	}
+        if ( $order && $order->get_type() === $this->order_type ) {
+            return false;
+        }
+        $render_refunds = 0 < $order->get_total() - $order->get_total_refunded() || 0 < absint( $order->get_item_count() - $order->get_item_count_refunded() );
+        return $render_refunds;
+    }
 
 }

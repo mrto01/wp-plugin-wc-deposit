@@ -112,6 +112,7 @@ class Enqueue {
 			case 'shop_order':
 			case 'woocommerce_page_wc-orders':
 			case 'woocommerce_page_wc-orders--vwcdi_partial_order':
+			case 'edit-vwcdi_partial_order':
 				$enqueue_styles     = [ 'icon', 'woocommerce-backend-order' ];
 				$enqueue_scripts    = [ 'woocommerce-backend-order' ];
 				$localize_script    = 'woocommerce-backend-order';

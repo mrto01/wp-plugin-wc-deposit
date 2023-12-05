@@ -1,7 +1,6 @@
-<?php
+<?php // phpcs:disable WordPress.Files.FileName.InvalidClassFileName
 
 namespace VicoDIn\Inc;
-
 use VicoDIn\Inc\Emails\Email_Deposit_paid;
 use VicoDIn\Inc\Emails\Email_Partial_paid;
 use Automattic\WooCommerce\Internal\DataStores\Orders\CustomOrdersTableController;
@@ -24,14 +23,10 @@ class Deposit_Backend {
 		$this->deposit_type = VICODIN_CONST['order_type'];
 
 		if ( vicodin_check_wc_active() ) {
-			add_filter( 'woocommerce_email_classes',
-				array( $this, 'vicodin_email_classes' ) );
-			add_filter( 'woocommerce_product_data_tabs',
-				array( $this, 'woocommerce_deposit_tab' ) );
-			add_filter( 'woocommerce_product_data_panels',
-				array( $this, 'woocommerce_deposit_tab_content' ) );
-            add_action( 'woocommerce_process_product_meta',
-				array( $this, 'vicodin_process_product_meta' ) );
+			add_filter( 'woocommerce_email_classes', array( $this, 'vicodin_email_classes' ) );
+			add_filter( 'woocommerce_product_data_tabs', array( $this, 'woocommerce_deposit_tab' ) );
+			add_filter( 'woocommerce_product_data_panels', array( $this, 'woocommerce_deposit_tab_content' ) );
+            add_action( 'woocommerce_process_product_meta', array( $this, 'vicodin_process_product_meta' ) );
 
 //            In order management page
             add_filter( 'admin_body_class', array( $this, 'vicodin_admin_body_class' ) );
@@ -131,7 +126,7 @@ class Deposit_Backend {
                                <span class="button vicodin-new-custom-plan"><?php esc_html_e( 'New custom plan', 'vico-deposit-and-installment' ); ?></span>
                                <select name="vicodin_deposit_plan" multiple id="vicodin_deposit_plan">
                                    <?php foreach ( $plan_options as $plan_id => $plan_name ) { ?>
-                                       <option value="<?php echo esc_attr( $plan_id ); ?>" <?php echo in_array( $plan_id, $plan_ids_saved ) ? 'selected' : '' ?>><?php echo esc_html( $plan_name ); ?></option>
+                                       <option value="<?php echo esc_attr( $plan_id ); ?>" <?php echo in_array( $plan_id, $plan_ids_saved ) ? 'selected' : '' // phpcs:ignore WordPress.PHP.StrictInArray ?>><?php echo esc_html( $plan_name ); ?></option>
                                     <?php } ?>
                                </select>
                            </div>
@@ -197,7 +192,7 @@ class Deposit_Backend {
         $exists_plan_ids = array();
 
         if ( isset ( $_POST['exists_plans'] ) ) {
-	        $exists_plan_ids = json_decode( wp_unslash( $_POST['exists_plans'] ), true);
+	        $exists_plan_ids = json_decode( wp_unslash( $_POST['exists_plans'] ), true); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
             $exists_plan_ids = array_map( 'sanitize_key', $exists_plan_ids );
         }
 
