@@ -1,0 +1,523 @@
+:root {
+    --vdi-bg: rgba(138, 170, 229, 0.2);
+    --vdi-border: #D2DAE2;
+    --vdi-texture: #A7AAAD;
+    --vdi-primary: #2F80ED;
+    --vdi-blue: #2185D0;
+    --vdi-text: #2f3542;
+    --vdi-subtext: #57606f;
+}
+
+.depart-switcher {
+    max-width: fit-content;
+
+    label {
+        cursor: pointer;
+    }
+
+    .depart-switch {
+        position: relative;
+        display: block;
+        background-color: rgba(0, 0, 0, .05);
+        border-radius: 15px;
+        min-height: 1.5rem;
+        padding-left: 4rem;
+        outline: 0;
+        font-size: 1em;
+        transition: background-color 0.3s ease;
+
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            background-color: #FFF;
+            left: 0;
+            top: 0;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15), 0 0 0 1px rgba(34, 36, 38, .15) inset;
+            transition: left 0.3s ease;
+        }
+
+    }
+
+    input {
+        display: none !important;
+    }
+
+    input:checked ~ .depart-switch::before {
+        left: 2.5rem;
+    }
+
+    input:checked ~ .depart-switch {
+        background-color: var(--vdi-blue);
+    }
+
+}
+
+#depart-deposit-dropdown {
+    margin-bottom: 15px;
+    display: none;
+}
+
+.depart-deposit-action {
+    display: flex;
+    min-width: 250px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    max-width: fit-content;
+    column-gap: 14px;
+    margin: -15px 0 15px 0;
+    flex-wrap: wrap;
+}
+
+.depart-deposit-options {
+    border: 1px solid var(--vdi-primary);
+    border-radius: 8px;
+    padding: 2px 17px;
+    position: relative;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.25s ease;
+
+    #depart-current-plan {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 1;
+        color: var(--vdi-primary);
+    }
+
+    &:active {
+        background-color: var(--vdi-bg);
+    }
+
+}
+
+.depart-deposit-options-checkout, .wc-block-components-product-details__depart-plan .wc-block-components-product-details__value {
+    display: block;
+    border: 1px solid var(--vdi-border);
+    border-radius: 3px;
+    padding: 3px 10px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+    width: fit-content;
+    background-color: #fff;
+
+    &:hover {
+        background-color: var(--vdi-bg);
+    }
+}
+
+.depart-cart-item-meta {
+    display: block;
+}
+
+.depart-deposit-options-checkout {
+    margin-bottom: 3px;
+}
+
+.wc-block-components-product-details__depart-plan .wc-block-components-product-details__name, dt.variation-depart-plan {
+    display: none !important;
+}
+
+dd[class^="variation-"] p {
+    margin-top: 0;
+}
+
+dd.variation-depart-plan {
+    width: 100%;
+    margin: 0;
+}
+
+.variation-depart-cart-item-key, .wc-block-components-product-details__depart-cart-item-key {
+    display: none !important;
+}
+
+.depart-deposit-check {
+    display: block;
+    position: relative;
+    padding-left: 33px;
+    cursor: pointer;
+    font-size: 16px;
+    user-select: none;
+    margin-top: 15px;
+    margin-bottom: 0 !important;
+    color: unset;
+
+    input {
+        display: none !important;
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+
+        &:checked ~ .depart-deposit-checkmark::after {
+            display: block;
+        }
+    }
+
+    .depart-deposit-checkmark {
+        position: absolute;
+        top: 3px;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        box-sizing: border-box;
+        border: 1px solid var(--vdi-border);
+
+        &::after {
+            content: "";
+            box-sizing: content-box;
+            position: absolute;
+            display: none;
+            left: 6px;
+            top: 1px;
+            width: 5px;
+            height: 10px;
+            border-width: 0 3px 3px 0;
+            border-style: solid;
+            border-color: var(--vdi-primary);
+            transform: rotate(45deg);
+        }
+    }
+}
+
+#depart-deposit-modal {
+    display: none;
+    position: fixed;
+    z-index: 999999999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    font-family: Roboto, Sans-serif, serif;
+
+    .depart-modal-content {
+        box-sizing: border-box;
+        background-color: #FEFEFE;
+        padding: 25px;
+        max-width: 777px;
+        position: relative;
+        top: 0;
+        margin: 0 auto;
+        border-radius: 5px;
+        margin-bottom: 20px;
+
+        .close {
+            color: #fff;
+            position: absolute;
+            top: -40px;
+            right: -30px;
+            font-size: 36px;
+            font-weight: 400;
+
+            &:hover, &:focus {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .depart-modal-content:has(> .depart-plan-boxes.depart-single-plan) {
+        padding: 0;
+        background: unset;
+
+        .depart-plan-box {
+            box-shadow: none;
+            border: none;
+        }
+    }
+}
+
+
+.depart-plan-boxes {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.depart-loading {
+    position: relative;
+
+    &:before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.7);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 99;
+    }
+
+    &:after {
+        content: "";
+        box-sizing: border-box;
+        width: 25px;
+        height: 25px;
+        border-width: 5px;
+        border-style: dotted;
+        border-color: var(--vdi-texture);
+        position: absolute;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        animation: circle 1.5s infinite linear;
+        z-index: 100;
+    }
+}
+
+@keyframes circle {
+    from {
+        transform: translate(-50%, -50%) rotate(0);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes scaleOut {
+    0% {
+        transform: scale(0.95);
+    }
+    30% {
+        transform: scale(1.05);
+    }
+    60% {
+        transform: scale(0.95);
+    }
+    90% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.depart-plan-box {
+    border: 1px solid var(--vdi-border);
+    border-radius: 10px;
+    padding: 5px 15px;
+    background-color: #FEFEFE;
+    transition: 0.3s;
+    font-size: 16px;
+
+    .depart-plan-summary .depart-select {
+        color: var(--vdi-primary);
+
+        &:hover {
+            background-color: var(--vdi-primary);
+            color: #FFF;
+        }
+    }
+
+    input[name="depart-plan-select"]:checked ~ .depart-plan-summary .depart-select {
+        display: block;
+        color: #FFF;
+        background-color: var(--vdi-primary);
+    }
+
+    &.depart-active .depart-plan-schedule.depart-schedule-summary.selected {
+        display: table;
+    }
+
+
+    input {
+        display: none !important;
+    }
+
+    &.depart-active {
+        box-shadow: -1px -1px 5px var(--vdi-border), 4px 4px 5px var(--vdi-border);
+        border: 1px solid var(--vdi-primary);
+
+    }
+
+
+    &.depart-active .depart-plan-summary .depart-plan_name{
+        color: var(--vdi-primary);
+    }
+
+    .depart-plan-summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        padding: 0 10px;
+        margin: 0;
+
+        .depart-select {
+            //display: none;
+            position: relative;
+            color: var(--vdi-primary);
+            top: 0;
+            margin-right: 0;
+            padding: 2px 14px;
+            border: 1px solid currentColor;
+            border-radius: 8px;
+            background-color: #FFF;
+            font-weight: 700;
+            transition: 0.3s;
+            cursor: pointer;
+            font-size: 16px;
+            text-wrap: nowrap;
+
+            &:active {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    .depart-plan-info {
+        cursor: pointer;
+        margin: 0;
+        flex-grow: 1;
+
+        .depart-plan_name {
+            line-height: 1.6;
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--vdi-text);
+            font-family: inherit;
+        }
+
+        .depart-deposit-fee {
+            color: var(--vdi-subtext);
+            font-weight: 500;
+        }
+
+        .depart-deposit-amount {
+            font-weight: 500;
+            color: var(--vdi-subtext);
+            font-size: 18px;
+
+            .woocommerce-Price-amount.amount {
+                font-size: 20px;
+            }
+        }
+        .woocommerce-Price-amount.amount {
+            font-weight: 700;
+        }
+    }
+
+    .depart-plan-schedule.depart-schedule-summary.selected {
+        display: none;
+        width: 100%;
+        border-collapse: collapse;
+        margin: 4px 0 10px 0;
+        color: var(--vdi-subtext);
+
+        thead {
+            background-color: var(--vdi-bg);
+            border-radius: 8px;
+
+            th {
+                color: var(--vdi-text);
+                border-bottom: none;
+                line-height: 1.5;
+                font-size: 16px;
+                text-transform: capitalize;
+            }
+
+            th:first-child {
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+            }
+
+            th:last-child {
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+            }
+
+        }
+
+        td, th {
+            background-color: transparent;
+            padding: 10px 25px;
+            text-align: left;
+            border-bottom: 1px solid #ececec;
+            font-size: 16px;
+        }
+
+        tbody {
+            tr:last-child {
+                td {
+                    border-bottom: none;
+                }
+            }
+
+            .woocommerce-Price-amount.amount {
+                font-weight: 700;
+            }
+        }
+
+    }
+
+    span.amount {
+        color: var(--vdi-subtext);
+    }
+}
+
+.depart-installment-summary {
+    width: 100%;
+    text-align: left;
+
+    .depart-installment-summary-title {
+        margin-bottom: 10px;
+    }
+
+    th, td {
+        padding: 14px;
+    }
+}
+
+
+.depart-installment-auto-payment {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    margin-bottom: 10px;
+}
+
+/* Override wcaio */
+.vi-wcaio-sidebar-cart-products .vi-wcaio-sidebar-cart-pd-info-wrap .vi-wcaio-sidebar-cart-pd-meta {
+    .depart-cart-item-meta {
+        display: inline;
+    }
+}
+
+.depart-auto-payment-table {
+    width: 100%;
+}
+
+
+$tablet-screen: 1080px;
+$mobile-screen: 500px;
+
+@media (max-width: $tablet-screen) {
+    #depart-deposit-modal .depart-modal-content {
+        width: 80%;
+        top: 15%;
+    }
+}
+
+@media (max-width: $mobile-screen) {
+    #depart-deposit-modal .depart-modal-content {
+        width: 98%;
+        top: 10%;
+        padding: 13px;
+    }
+    #depart-deposit-modal .depart-modal-content .close {
+        top: -60px;
+        right: 43%;
+    }
+    .depart-plan-box .depart-plan-schedule.depart-schedule-summary.selected td, .depart-plan-box .depart-plan-schedule thead th {
+        padding: 10px 10px !important;
+    }
+}
+

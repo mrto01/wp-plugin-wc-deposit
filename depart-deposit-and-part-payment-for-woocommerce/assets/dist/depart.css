@@ -1,0 +1,226 @@
+@charset "UTF-8";
+@import 'components.css';
+.vi-ui.form.segments {
+  background-color: #FFF;
+  padding: 20px;
+  margin-top: 20px;
+}
+.vi-ui.form.segments .field > label {
+  font-weight: 500;
+  font-size: 16px;
+}
+.vi-ui.form.segments .field > label .required {
+  color: red;
+}
+.vi-ui.form.segments input {
+  height: 40px;
+}
+.vi-ui.form.segments .vi-ui.dropdown > .text {
+  font-weight: 500 !important;
+}
+
+.vi-ui.table.form {
+  padding: 0;
+  font-size: 1em;
+}
+
+.vi-ui.form.segments .inline.field label {
+  opacity: 0.7;
+  font-weight: 500;
+}
+
+.depart-schedule {
+  text-align: left;
+}
+.depart-schedule tr td:last-child {
+  border-left: 1px solid rgba(34, 36, 38, 0.1);
+  width: 160px;
+}
+.depart-schedule .partial-day.vi-ui.right.labeled.input input {
+  max-width: 310px;
+}
+.depart-schedule .partial-day.vi-ui.right.labeled.input .selection.dropdown {
+  background-color: #CFCFCF;
+  min-width: 127px;
+  height: 100%;
+  max-height: 40px;
+  min-height: 40px;
+  padding: 10px 2.1em 10px 15px !important;
+  font-weight: 500;
+}
+.depart-schedule .partial-day.vi-ui.right.labeled.input .selection.dropdown .dropdown.icon {
+  padding: 10px 3px;
+}
+.depart-schedule .partial-payment {
+  max-width: 187px;
+}
+.depart-schedule .partial-fee > input[name=partial-fee] {
+  max-width: 100px;
+}
+.depart-schedule td > div {
+  display: flex;
+  align-items: center;
+}
+.depart-schedule.vi-ui.table thead th {
+  font-weight: 500;
+  padding: 14px 0.78571429em;
+}
+.depart-schedule.vi-ui.table thead th .question {
+  font-size: 16px;
+  vertical-align: baseline;
+}
+.depart-schedule thead th:last-child {
+  border-left: 1px solid rgba(34, 36, 38, 0.15) !important;
+}
+.depart-schedule .vi-ui.button.increase-field,
+.depart-schedule .vi-ui.button.decrease-field {
+  margin: 0 10px 0 0;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.depart-schedule .vi-ui.button.increase-field .icon,
+.depart-schedule .vi-ui.button.decrease-field .icon {
+  font-size: 20px;
+}
+.depart-schedule thead tr th {
+  padding: 10px 0.78571429em;
+}
+
+.depart-action-bar {
+  top: 30px;
+}
+.depart-action-bar .vi-ui.icon.button {
+  padding: 10px 15px 10px 0;
+  background-color: transparent;
+}
+.depart-action-bar .vi-ui.icon.button i.icon {
+  display: flex;
+  align-items: center;
+}
+.depart-action-bar .vi-ui.icon.button i.icon:before {
+  font-size: 32px;
+}
+.depart-action-bar h2 {
+  font-size: 24px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+#depart-rule-sortable tr td:first-child:before {
+  content: "≡";
+  margin-right: 4px;
+}
+
+.depart-sticky {
+  position: sticky;
+  bottom: 20px;
+  z-index: 10;
+}
+
+.vi-ui.rule-wrapper {
+  padding: 20px;
+  margin-top: 20px;
+  background: #FFF;
+}
+.vi-ui.rule-wrapper .vi-ui.form-table th label, .vi-ui.rule-wrapper .vi-ui.form-table td label {
+  font-size: 16px;
+}
+
+#depart-new-plan {
+  font-family: roboto, sans-serif;
+  border-radius: 8px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 0 26px;
+}
+#depart-new-plan i.icon {
+  opacity: 1;
+  margin: 0;
+  font-size: 19px;
+}
+
+.vi-ui.button.icon.depart-edit-plan,
+.vi-ui.button.icon.depart-delete-plan,
+.vi-ui.button.icon.depart-edit-rule,
+.vi-ui.button.icon.depart-delete-rule {
+  padding: 9px;
+}
+
+.vi-ui.table.vwcdp-table {
+  font-size: 16px;
+  margin-top: 27px;
+}
+.vi-ui.table.vwcdp-table td {
+  padding: 10px 28px;
+  border: none;
+  font-weight: 400;
+}
+.vi-ui.table.vwcdp-table td:first-child {
+  white-space: nowrap;
+}
+.vi-ui.table.vwcdp-table td.three.wide {
+  width: 20%;
+}
+.vi-ui.table.vwcdp-table.striped thead th {
+  padding: 15px 30px;
+  font-weight: 500;
+  border: none;
+  background-color: #2185d0;
+  color: #FFF;
+  font-size: 18px;
+}
+.vi-ui.table.vwcdp-table th {
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+}
+.vi-ui.table.vwcdp-table.striped tbody tr:nth-child(2n) {
+  background-color: #FFF;
+}
+.vi-ui.table.vwcdp-table tbody tr:last-child > td:first-child {
+  border-radius: 0 0 0 0.28571429rem;
+}
+.vi-ui.table.vwcdp-table tbody tr:last-child > td:last-child {
+  border-radius: 0 0 0.28571429rem 0;
+}
+.vi-ui.table.vwcdp-table .depart-row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 15px;
+  column-gap: 15px;
+  justify-content: flex-start;
+  align-items: center;
+}
+.vi-ui.table.vwcdp-table .vi-ui.label {
+  background-color: #D7D7D7;
+}
+
+.vi-ui.info.message {
+  font-size: 14px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.toplevel_page_depart_menu img {
+  padding: 6px 0 0 !important;
+}
+
+.vi-ui.selection.visible.dropdown > .text:not(.default) {
+  font-weight: 500;
+}
+
+.depart-price-range input[name=price_end]::placeholder {
+  font-size: 24px;
+  position: absolute;
+  top: 4px;
+}
+
+/*# sourceMappingURL=depart.css.map */

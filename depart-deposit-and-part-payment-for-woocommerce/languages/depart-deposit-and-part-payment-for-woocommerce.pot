@@ -1,0 +1,1835 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: DEPART - Deposit and Part payment for WooCommerce\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-28 02:23+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.7; wp-6.5.3\n"
+"X-Domain: depart-deposit-and-part-payment-for-woocommerce"
+
+#. 1: user display name 2: user ID 3: user email
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:777
+#, php-format
+msgid "%1$s (#%2$s &ndash; %3$s)"
+msgstr ""
+
+#. Placeholders: %1$s - site title, %2$s - order number
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/payment/square-gateway.php:59
+#, php-format
+msgid "%1$s - Order %2$s"
+msgstr ""
+
+#. 1: credit card type 2: last 4 digits
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/payment/payment-table.php:63
+#, php-format
+msgid "%1$s ending in %2$s"
+msgstr ""
+
+#. %d: notes count
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:222
+msgid "%d note"
+msgid_plural "%d notes"
+msgstr[0] ""
+msgstr[1] ""
+
+#. %s: Order due date
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:231
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:258
+#, php-format
+msgctxt "%s = human-readable time difference"
+msgid "in %s"
+msgstr ""
+
+#. %d: orders count
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:740
+#, php-format
+msgid "%s order status changed."
+msgid_plural "%s order statuses changed."
+msgstr[0] ""
+msgstr[1] ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-full-payment.php:78
+msgid ""
+"[{site_title}]: Installment plan completed for #{wdp_parent_order_number}"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-partial-paid.php:90
+msgid ""
+"[{site_title}]: Partial payment #{wdp_suborder_number} has been received!"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-partial-paid.php:79
+msgid "[{site_title}]: Partial payment for #{wdp_parent_order_number}"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-payment-reminder.php:67
+msgid "[{site_title}]: Payment reminder for order #{wdp_parent_order_number}"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-deposit-paid.php:80
+msgid "[{site_title}]: Your deposit order has been received!"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-full-payment.php:88
+msgid "[{site_title}]: Your installment plan has been completed!"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:388
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:458
+msgid "Action"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:168
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:102
+msgid "Actions"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:156
+msgid "Active plan"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:123
+msgid "Active rule"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:134
+msgid "ADD NEW PLAN"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:375
+msgid "Add new plan"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:101
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:437
+msgid "Add new rule"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/payment/payment-table.php:98
+msgid "Add payment method"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:683
+msgid "Add to cart"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/order/recalculate-deposit-modal.php:129
+msgid "Additional Settings"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:68
+msgctxt "Admin menu name"
+msgid "Suborders"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:320
+msgid "Advanced"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:106
+msgid "After"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:119
+msgid ""
+"After placing a deposit for the product, customers will receive a "
+"confirmation email notifying them that their order has been successfully "
+"placed with a deposit"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:431
+msgid "Allow customers choose auto payment for Deposit order."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:368
+msgid "Allow customers to pay without a predetermined schedule."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/email-schedule-payments-summary.php:15
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/schedule-payments-summary.php:22
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/schedule-payments-summary.php:29
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/admin-full-payment.php:29
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/admin-partial-paid.php:27
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/deposit-paid.php:30
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/full-payment.php:33
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/partial-paid.php:30
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/payment-reminder.php:30
+msgid "Amount"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:210
+msgid "Any categories"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:261
+msgid "Any user roles"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:455
+msgid "Apply for"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:626
+msgid "Auto send reminder email"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:852
+msgid "Auto Update Key"
+msgstr ""
+
+#. %s: Order id
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/payment/payment-table.php:32
+#, php-format
+msgid "Automatic partial payment for order %s"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:412
+msgid "Automatic Payments"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:636
+msgid "Automatically send reminder mail based on the settings below."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:390
+msgid "Billing details"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:604
+msgid ""
+"Calculate taxes as part of deposits to display to customers on the cart item "
+"details."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:581
+msgid ""
+"Calculate taxes as part of deposits to display to customers on the product "
+"details."
+msgstr ""
+
+#. Order id
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:1261
+#, php-format
+msgid "Can not delete suborder %s. Because it's parent has not been deleted."
+msgstr ""
+
+#. Order id
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:1362
+#, php-format
+msgid "Can not trash suborder %s. Because it's parent order is untrash."
+msgstr ""
+
+#. Order id
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:1323
+#, php-format
+msgid "Can not untrash suborder %s. Because it's parent order is trashed."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-front-end.php:392
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-front-end.php:444
+msgid "Cart item not found"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:209
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:235
+msgid "Categories"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:597
+msgid "Change order status to completed"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:579
+msgid "Change order status to on-hold"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:588
+msgid "Change order status to processing"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:559
+msgid "Change order to the selected status when it is fully paid."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:123
+msgid "Change status to cancelled"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:122
+msgid "Change status to completed"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:121
+msgid "Change status to on-hold"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:120
+msgid "Change status to processing"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:604
+msgid "Change status: "
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:520
+msgid ""
+"Change suborder number according to the parent order (eg: 124 to 123-1 with "
+"123 is the parent order)."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-full-payment.php:143
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-partial-paid.php:144
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-deposit-paid.php:155
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-full-payment.php:164
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-partial-paid.php:165
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-payment-reminder.php:142
+msgid "Choose which format of email to send."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:382
+msgid "Close modal panel"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:315
+msgid "Complete"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:303
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:596
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/schedule-payments-summary.php:24
+msgid "Completed"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/payment/ppcp-gateway.php:100
+msgid "Could not capture order."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:201
+msgid "Coupon Handling."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:135
+msgid "Creating a new suborder is not supported."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:170
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/order/recalculate-deposit-modal.php:89
+msgid "Custom"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:159
+msgid ""
+"Customers must buy this product by making a deposit instead of paying the "
+"full price."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:133
+msgid ""
+"Customers will receive this email after they have made a full payment for "
+"the product they previously placed a deposit on"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:126
+msgid ""
+"Customers will receive this email after they have made a partial payment to "
+"cover the remaining balance for the product they previously placed a deposit "
+"on"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:225
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:117
+msgid "Day(s)"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:641
+msgid "Days to send reminder email"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:364
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:424
+msgid "Deleted successfully!"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:337
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:345
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:413
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:421
+msgid "Deletion failed!"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-admin.php:44
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-admin.php:45
+msgid "DEPART"
+msgstr ""
+
+#. Name of the plugin
+msgid "DEPART - Deposit and Part payment for WooCommerce"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-deposit-paid.php:11
+msgid "DEPART - Deposit payment received"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-full-payment.php:10
+msgid "DEPART - Full payment"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-full-payment.php:12
+msgid "DEPART - Full payment received"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-partial-paid.php:10
+msgid "DEPART - Partial paid"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-partial-paid.php:11
+msgid "DEPART - Partial payment received"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-payment-reminder.php:11
+msgid "DEPART - Partial payment reminder"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:111
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:756
+msgid "Deposit"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-block.php:57
+msgid "Deposit amount of the cart."
+msgstr ""
+
+#. %s: Partial payment amount
+#. The total of the current order
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/deposit-paid.php:13
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/deposit-paid.php:19
+#, php-format
+msgid "Deposit amount: %s"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:709
+msgid "Deposit checkbox label"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/order/recalculate-deposit-modal.php:21
+msgid "Deposit configuration"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:210
+msgid "Deposit Disabled"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:446
+msgid "Deposit order"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-deposit-paid.php:12
+msgid ""
+"Deposit paid emails are sent to customer when a new Deposit order received."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:298
+msgid "Deposit Payment"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:722
+msgid "Deposit payment"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:117
+msgid "Deposit payment received"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:442
+msgid "Deposit rule notice"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-admin.php:64
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-admin.php:65
+msgid "Deposit Rules"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:445
+msgid "Deposit rules will have priority order from top to bottom."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:167
+msgid "Deposit type"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:178
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:822
+msgid "Disable"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:148
+msgid "Disable Deposit"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:149
+msgid "Disable deposit feature for this product"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:387
+msgid ""
+"Display Reminder email column in the Orders list of Woocommerce dashboard."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:406
+msgid "Displays any fees alongside the deposit amount."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/payment/square-gateway.php:120
+msgid "Do square transaction failed!"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:447
+msgid "Drag and drop the rule to change the priority order."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:8
+msgid "Drag and drop, or click to set custom plan."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:165
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:99
+msgid "Due date"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:454
+msgid "Due today"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:386
+msgid "Duration"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:166
+msgid "Duration : "
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:284
+msgid "Duration: "
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:61
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:440
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:6
+msgid "Edit"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:832
+msgid "Edit email"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:138
+msgid "EDIT PLAN"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:105
+msgid "Edit rule"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:62
+msgid "Edit suborder"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:440
+msgid "Edit this order"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:329
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:394
+msgid "Email"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-full-payment.php:123
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-partial-paid.php:124
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-deposit-paid.php:126
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-full-payment.php:135
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-partial-paid.php:136
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-payment-reminder.php:113
+msgid "Email heading"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:1438
+msgid "Email sent failed"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:1440
+msgid "Email sent successfully"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:145
+msgid "Email sent to administrators"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:108
+msgid "Email sent to customers"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-full-payment.php:132
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-partial-paid.php:133
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-deposit-paid.php:135
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-full-payment.php:144
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-partial-paid.php:145
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-payment-reminder.php:122
+msgid "Email text"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-full-payment.php:141
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-partial-paid.php:142
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-deposit-paid.php:153
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-full-payment.php:162
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-partial-paid.php:163
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-payment-reminder.php:140
+msgid "Email type"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:182
+msgid "Email type invalid"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Empower customers with flexible payment options. Allow partial payments for "
+"products or services. Boost conversions and customer satisfaction."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:176
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:340
+msgid "Enable"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:824
+msgid "enable"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/order/recalculate-deposit-modal.php:32
+msgid "Enable Deposit"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-full-payment.php:102
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-partial-paid.php:103
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-deposit-paid.php:114
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-full-payment.php:123
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-partial-paid.php:124
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-payment-reminder.php:101
+msgid "Enable this email notification"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-full-payment.php:100
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-partial-paid.php:101
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-deposit-paid.php:112
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-full-payment.php:121
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-partial-paid.php:122
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-payment-reminder.php:99
+msgid "Enable/disable"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:330
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:352
+msgid "Enter 3 characters to search"
+msgstr ""
+
+#. %s: WP admin email
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-full-payment.php:109
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-partial-paid.php:110
+#, php-format
+msgid "Enter recipients (comma separated) for this email. Defaults to %s."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:308
+msgid "Exclude"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:228
+msgid "Exclude categories"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:438
+msgid "Exclude Payment method"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:345
+msgid "Exclude products"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:280
+msgid "Exclude user roles"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:73
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:134
+msgid "f.e. 3"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:57
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:94
+msgid "f.e. 50"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:193
+msgid "Fee (%)"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:209
+msgid "Fee Collection"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:764
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-front-end.php:1127
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:74
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:135
+msgid "Fees"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:748
+msgid "Fees "
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:77
+msgid ""
+"Fees will be calculated based on the deposit amount and compounded with it "
+"when checkout."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:138
+msgid ""
+"Fees will be calculated based on the part payment amount and compounded with "
+"it when checkout."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:786
+msgid "Filter by registered customer"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:69
+msgid "Filter suborders"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:39
+msgid "Fixed"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:489
+msgid "Force Deposit"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:158
+msgid "Force deposit"
+msgstr ""
+
+#. 1: first name 2: last name
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:155
+#, php-format
+msgctxt "full name"
+msgid "%1$s %2$s"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:299
+msgid "Full payment"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:155
+msgid "Full payment Admin received"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-full-payment.php:11
+msgid ""
+"Full payment emails are sent to chosen recipient(s) when an installment plan "
+"is completed."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-full-payment.php:13
+msgid ""
+"Full payment emails are sent to customer when installment plan is paid in "
+"full"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:131
+msgid "Full payment received"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:735
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:760
+msgid "Future payments"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-block.php:63
+msgid "Future payments of the cart."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/payment/auto-payment.php:95
+msgid "Gateway is not supported!."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:317
+msgid "General"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:864
+msgid "Get Key"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:169
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/order/recalculate-deposit-modal.php:87
+msgid "Global"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/payment/square-gateway.php:142
+msgctxt "hash before order number"
+msgid "#"
+msgstr ""
+
+#. %s: Customer first name
+#. Customer first name
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/deposit-paid.php:10
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/full-payment.php:10
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/partial-paid.php:10
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/payment-reminder.php:10
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/deposit-paid.php:16
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/full-payment.php:16
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/partial-paid.php:16
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/payment-reminder.php:16
+#, php-format
+msgid "Hi %s,"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:202
+msgid "How coupon will be handled."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:210
+msgid "How fee will be charged."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:218
+msgid "How shipping tax will be handled."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:214
+msgid "How shipping will be charged."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:206
+msgid "How tax will be charged."
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://villatheme.com"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://villatheme.com/extensions/woo-deposit-installment/"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/email-schedule-payments-summary.php:13
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/schedule-payments-summary.php:19
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/schedule-payments-summary.php:26
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/admin-full-payment.php:27
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/admin-partial-paid.php:27
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/deposit-paid.php:30
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/full-payment.php:31
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/partial-paid.php:30
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/payment-reminder.php:30
+msgid "ID"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:140
+msgid ""
+"If customers forget or fail to pay the remaining balance after placing a "
+"deposit, a reminder email will be sent to notify of the situation"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:211
+msgid "Immediately"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:307
+msgid "Include"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:203
+msgid "Include categories"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:322
+msgid "Include products"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:255
+msgid "Include user roles"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:124
+msgid "Installment Plan"
+msgstr ""
+
+#. The total of the current order
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:496
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/email-schedule-payments-summary.php:7
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/schedule-payments-summary.php:10
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/admin-full-payment.php:24
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/admin-partial-paid.php:26
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/deposit-paid.php:29
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/full-payment.php:28
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/partial-paid.php:29
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/payment-reminder.php:29
+msgid "Installment plan"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-full-payment.php:82
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-full-payment.php:92
+msgid "Installment plan completed"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-full-payment.php:86
+msgid ""
+"Installment plan for order #{wdp_parent_order_number} from "
+"{wdp_order_billing_name} has been fully paid."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:1443
+msgid "Invalid Order"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/payment/auto-payment.php:80
+msgid "Invalid token id."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:540
+msgid ""
+"Inventory decreases when orders are placed with a deposit if \"Deposit "
+"Payment\" is selected, or when orders are paid in full upfront with \"Full "
+"payment\""
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-block.php:75
+msgid "Label for deposit amount of the cart."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-block.php:87
+msgid "Label for fees of the cart."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-block.php:81
+msgid "Label for future payments of the cart."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:691
+msgid "Label of the \"Add to Cart\" button with Deposit/Installment Plans."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:717
+msgid "Label of the checkbox user needs to check to be able to pay in deposit."
+msgstr ""
+
+#. Placeholder text
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-full-payment.php:126
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-partial-paid.php:127
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-deposit-paid.php:129
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-full-payment.php:138
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-partial-paid.php:139
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-payment-reminder.php:116
+#, php-format
+msgid "Main heading contained within the email. <code>%s</code>."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:434
+msgid "Manage Deposit Rules"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:372
+msgid "Manage Payment Plans"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:155
+msgid "Max "
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:142
+msgid "Min "
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:426
+msgid "Missing required payment gateway(s) to enable this option."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:226
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:118
+msgid "Month(s)"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:651
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:652
+msgid "N/A"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:182
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:231
+msgid "New custom plan"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:236
+msgid "No categories"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-front-end.php:282
+msgid "No plans founds (You will pay the full amount)"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/payment/payment-table.php:91
+msgid "No saved methods found."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:65
+msgid "No suborders found"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:66
+msgid "No suborders found in trash"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:286
+msgid "No user roles"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:384
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:453
+msgid "No."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:426
+msgid "Note"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/order/partial-order-details.php:81
+msgid "Note:"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:578
+msgid "On-hold"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:163
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:97
+msgid "Order"
+msgstr ""
+
+#. %s: order ID
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:380
+#, php-format
+msgid "Order #%s"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/order/partial-order-details.php:33
+msgid "Order details"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:545
+msgid "Order fully paid status"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/order/recalculate-deposit-modal.php:33
+msgid "Order Item"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:100
+msgctxt "Order status"
+msgid "Installment"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:108
+msgctxt "Order status"
+msgid "Overdue"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:698
+msgid "Order status changed by bulk edit:"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-front-end.php:787
+msgid "order-due"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-front-end.php:795
+msgid "order-rest"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:67
+msgid "Orders"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:125
+msgid "Overdue"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:559
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-front-end.php:1132
+msgid "Paid"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:419
+msgid "Paid: "
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:164
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:98
+msgid "Parent order"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-payment-reminder.php:12
+msgid "Part payment reminder emails are sent to customer when an Suborder due."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:148
+msgid "Partial paid Admin received"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-partial-paid.php:11
+msgid ""
+"Partial paid emails are sent to chosen recipient(s) when a partial payment "
+"is paid by customer"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-partial-paid.php:12
+msgid "Partial paid emails are sent to customer when an Partial order is paid"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-partial-paid.php:83
+msgid "Partial payment #{wdp_suborder_number}"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-partial-paid.php:87
+msgid ""
+"Partial payment #{wdp_suborder_number} for order #{wdp_parent_order_number} "
+"from {wdp_order_billing_name}."
+msgstr ""
+
+#. The total of the current order
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/admin-partial-paid.php:17
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/partial-paid.php:19
+#, php-format
+msgid "Partial payment amount: %s"
+msgstr ""
+
+#. Order number
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:1215
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-block.php:136
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-front-end.php:1223
+#, php-format
+msgid "Partial Payment for order %s"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:124
+msgid "Partial payment received"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:489
+msgid "Partial Payments"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:356
+msgid "Partial payments disorder"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-front-end.php:1333
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/schedule-payments-summary.php:68
+msgid "Pay"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:58
+msgid "Pay immediately"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:95
+msgid "Pay later"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:774
+msgid "Payment amount"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:181
+msgid "Payment Amount (%)"
+msgstr ""
+
+#. %s: Partial payment amount
+#. The total of the current order
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/admin-partial-paid.php:10
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/partial-paid.php:13
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/payment-reminder.php:13
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/payment-reminder.php:19
+#, php-format
+msgid "Payment amount: %s"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:761
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/email-schedule-payments-summary.php:14
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/schedule-payments-summary.php:20
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/schedule-payments-summary.php:27
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/admin-full-payment.php:28
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/admin-partial-paid.php:27
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/deposit-paid.php:30
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/full-payment.php:32
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/partial-paid.php:30
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/payment-reminder.php:30
+msgid "Payment date"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:188
+msgid "Payment due date for each payment."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:194
+msgid ""
+"Payment fee for each payment. Fees will be calculated based on the amount of "
+"each payment"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:187
+msgid "Payment Interval Each Time"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/email-schedule-payments-summary.php:16
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/schedule-payments-summary.php:21
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/schedule-payments-summary.php:28
+msgid "Payment method"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:432
+msgid ""
+"Payment methods supported: Stripe credit card, Sepa (WooCommerce Stripe "
+"Gateway), Credit card (WooCommerce Square), PayPal( WooCommerce PayPal "
+"Payment )."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-admin.php:55
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-admin.php:56
+msgid "Payment Plans"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:174
+msgid "Payment plans"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:138
+msgid "Payment reminder"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-payment-reminder.php:71
+msgid "Payment reminder for order #{wdp_parent_order_number}"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-deposit-paid.php:144
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-full-payment.php:153
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-partial-paid.php:154
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-payment-reminder.php:131
+msgid "Payment text"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:404
+msgid "Payment via"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/admin-full-payment.php:30
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/admin-partial-paid.php:27
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/deposit-paid.php:30
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/full-payment.php:34
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/partial-paid.php:30
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/payment-reminder.php:30
+msgid "Payment_method"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:40
+msgid "Percentage"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:399
+msgid "Phone"
+msgstr ""
+
+#. Email placeholders
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-full-payment.php:97
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-partial-paid.php:98
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-deposit-paid.php:109
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-full-payment.php:118
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-partial-paid.php:119
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-payment-reminder.php:96
+#, php-format
+msgid "Placeholders available : %s"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/order/recalculate-deposit-modal.php:35
+msgid "Plan"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-front-end.php:454
+msgid "Plan changed"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:167
+msgid "Plan description"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-front-end.php:448
+msgid "Plan from client is invalid"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:147
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:385
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:23
+msgid "Plan name"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:26
+msgid "Plan name is used to display in the frontend."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:22
+msgid "Plan name required"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:118
+msgid "Plan not found!"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:326
+msgid "Plan saved!"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:174
+msgid "Plan schedule"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/order/recalculate-deposit-modal.php:34
+msgid "Plan Type"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:456
+msgid "Plans"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:212
+msgid "Please enable the deposit option from our "
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:870
+msgid "Please fill your key what you get from"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/deposit-block.php:29
+msgid "Please select a variable"
+msgstr ""
+
+#. %d: notes count
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:219
+msgid "Plus %d other note"
+msgid_plural "Plus %d other notes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:70
+msgid "prevent_create_suborder"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:214
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:188
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:188
+msgid "Preview"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:135
+msgid "Price range"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:302
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:307
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:587
+msgid "Processing"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:480
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/order/partial-order-details.php:39
+msgid "Product"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:446
+msgid ""
+"Product will be applied to the first rule that satisfies the conditions."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:329
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:351
+msgid "Products"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:167
+msgid "Products have prices between Min and Max will be applied rule"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:501
+msgid ""
+"Products whose deposit rules are active must be purchased via deposit. This "
+"is overridden by deposit settings at product level."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:481
+msgid "Quantity"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/order/recalculate-deposit-modal.php:160
+msgid "Recalculate"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:782
+msgid "Recalculate deposit"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-full-payment.php:106
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-partial-paid.php:107
+msgid "Recipient(s)"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:526
+msgid "Reduce stocks on"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:564
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-front-end.php:1137
+msgid "Remaining"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:323
+msgid "Reminder"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:1373
+msgid "Reminder email"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:648
+msgid "Reminder emails will be sent 'X' days before the payments are due."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:664
+msgid ""
+"Reminder emails will be sent repeatedly every 'X' days after partial "
+"payments are overdue. ( Set number 0 to not send )"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:658
+msgid "Reminder interval"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:7
+msgid "Remove"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:126
+msgid "Remove personal data"
+msgstr ""
+
+#. %d: orders count
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:748
+#, php-format
+msgid "Removed personal data from %s order."
+msgid_plural "Removed personal data from %s orders."
+msgstr[0] ""
+msgstr[1] ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:508
+msgid "Rewrite suborder number"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:454
+msgid "Rule Name"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:115
+msgid "Rule name"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:85
+msgid "Rule not found!"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:402
+msgid "Rule saved!"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:306
+msgid "Same as Woocommerce"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:293
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:368
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:880
+msgid "Save"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:305
+msgid "Save plan failed!"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:201
+msgid "Save plans"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:380
+msgid "Save rule failed!"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:64
+msgid "Search suborders"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:870
+msgid "See guide"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:444
+msgid "Select payment methods"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:180
+msgid "Select payment plans"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-front-end.php:460
+msgid "Select plan"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:787
+msgid "Select plan button"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:696
+msgid "Select plan label"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:1419
+msgid "Send"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:621
+msgid "Set the daily time to check if deposit orders are overdue."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce.php:113
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-admin.php:73
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-admin.php:74
+msgid "Settings"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:410
+msgid "Shipping details"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:213
+msgid "Shipping Handling"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:418
+msgid "Shipping method"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:217
+msgid "Shipping Tax Handling"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:60
+msgctxt "shop_order post type singular name"
+msgid "Suborder"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:394
+msgid "Show fees in frontend"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:375
+msgid "Show reminder email column"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:588
+msgid "Show taxes in cart item details"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:565
+msgid "Show taxes in product detail"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/payment/stripe-gateway.php:102
+msgid ""
+"Sorry, we are unable to process your payment at this time. Please retry "
+"later."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:287
+msgid "Split"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:387
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:457
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:166
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:100
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/email-schedule-payments-summary.php:17
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/schedule-payments-summary.php:23
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/schedule-payments-summary.php:30
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/admin-full-payment.php:31
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/admin-partial-paid.php:27
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/deposit-paid.php:30
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/full-payment.php:35
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/partial-paid.php:30
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/emails/plain/payment-reminder.php:30
+msgid "Status"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-full-payment.php:115
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-admin-partial-paid.php:116
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-deposit-paid.php:118
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-full-payment.php:127
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-partial-paid.php:128
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-payment-reminder.php:105
+msgid "Subject"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:59
+msgid "Suborders"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:482
+msgid "Tax"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:205
+msgid "Tax Collection"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:326
+msgid "Text & Labels"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:704
+msgid "Text in the button (button click to see the installment plans)."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:756
+msgid ""
+"Text indicating the additional amount added when paying in installments "
+"(total fee of deposit and all partial payments)."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:743
+msgid ""
+"Text indicating the amount of deposit required in cart item and check out."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:730
+msgid ""
+"Text indicating the amount of deposit required when selecting a plan in "
+"product details."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:782
+msgid ""
+"Text shown in the payment plan details, represents the specific amount that "
+"the customer needs to pay at each installment or for the entire order."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:769
+msgid ""
+"Text shown in the payment plan details, the date by which the installment or "
+"full payment is due. It indicates when the customer needs to complete their "
+"payment for the order."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-deposit-paid.php:84
+msgid "Thank you for your order"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-partial-paid.php:94
+msgid "Thank you for your partial payment"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:150
+msgid ""
+"The administrator will be notified via email when the customer completes a "
+"partial payment for the remaining balance after making a deposit"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:157
+msgid ""
+"The administrator will receive an email notification confirming that the "
+"customer has fully paid for the product they previously placed a deposit on"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:182
+msgid "The payment amount will be based on the product price"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:454
+msgid "The selected payment methods will not be available."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:795
+msgid ""
+"The text that is displayed in the button to the right of the payment plan "
+"details."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:429
+msgid "There are no plans saved. Please add new plans!"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:501
+msgid "There are no rules saved. Please add new rules!"
+msgstr ""
+
+#. Parent order number
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:522
+#, php-format
+msgid "This is a partial payment for order %s"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:616
+msgid "Time to check due orders"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-payment-reminder.php:79
+msgid "To make the payment, please visit following link {wdp_payment_link}"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-deposit-paid.php:92
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-partial-paid.php:102
+msgid ""
+"To pay the remaining amount, please visit following link "
+"{wdp_order_detail_link}"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:233
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:260
+msgid "today"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:167
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:101
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:483
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/order/partial-order-details.php:40
+msgid "Total"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-block.php:69
+msgid "Total fee of the cart."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:280
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:161
+msgid "Total: "
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:350
+msgid "Turn on Deposit feature."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:37
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:115
+msgid "Type"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:332
+msgid "Update"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:651
+msgid "Use the number 0 to indicate that on the due date"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:260
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-rule.php:285
+msgid "User roles"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:124
+msgid "Value will be calculated after the previous payment."
+msgstr ""
+
+#. %s: method
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/list-table-suborder.php:279
+#, php-format
+msgid "via %s"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-backend.php:525
+msgid "View"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/deposit-order-type.php:63
+msgid "View suborder"
+msgstr ""
+
+#. Author of the plugin
+msgid "VillaTheme"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:285
+msgid "With Deposit"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:286
+msgid "With Future Payment"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-plan.php:227
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/templates/plan/custom-plan-template.php:119
+msgid "Year(s)"
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:870
+msgid ""
+"You can auto update DEPART - Deposit and Part payment for WooCommerce plugin."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/admin/deposit-setting.php:677
+msgid ""
+"You can use multiple languages if you are using WPML or Polylang. Make sure "
+"you have translated Text & Labels in all your languages before changing them "
+"below. "
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-deposit-paid.php:88
+msgid "Your deposit order has been received."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-full-payment.php:100
+msgid ""
+"Your installment plan has been fully paid. Your order is now being processed."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-full-payment.php:96
+msgid ""
+"Your last payment [ #{wdp_suborder_number} ] for order "
+"#{wdp_parent_order_number} has been received."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-partial-paid.php:98
+msgid ""
+"Your partial payment [ #{wdp_suborder_number} ] for order "
+"#{wdp_parent_order_number} has been received."
+msgstr ""
+
+#: E:/villatheme-2024/PREMIUM-VERSION/depart-deposit-and-part-payment-for-woocommerce/depart-deposit-and-part-payment-for-woocommerce/inc/emails/email-payment-reminder.php:75
+msgid ""
+"Your partial payment for order #{wdp_parent_order_number} [Order "
+"#{wdp_suborder_number}] is due on {wdp_payment_due_date}."
+msgstr ""

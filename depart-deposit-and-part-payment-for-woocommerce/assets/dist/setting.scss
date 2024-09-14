@@ -1,0 +1,111 @@
+@import 'components.css';
+
+.depart-sticky {
+    position: sticky;
+    bottom: 20px;
+    width: fit-content;
+    z-index: 9;
+
+    button.vi-ui.depart-save-setting.icon, button.vi-ui.depart-check-key.icon {
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 18px;
+        padding-left: 3.07142857em !important;
+        font-weight: 400;
+
+        .icon {
+            background-color: unset;
+            left: 12px;
+            opacity: 1;
+        }
+
+        &.loading:before, &.loading:after {
+            top: 44%;
+        }
+    }
+}
+
+.depart-email-links {
+    display: flex;
+    flex-direction: column;
+
+    a {
+        display: block;
+        padding: 15px 15px;
+        font-weight: 500;
+        text-decoration: none;
+
+        &:hover {
+            background-color: var(--admin-bg);
+        }
+    }
+
+    .vi-ui.medium.header {
+        font-size: 24px;
+        font-weight: 400;
+    }
+
+    .vi-ui.message {
+        font-size: 14px !important;
+    }
+}
+
+.vi-ui.top.attached.tabular.menu {
+    margin-top: 0;
+
+    a {
+        color: rgba(0, 0, 0, .87);
+        text-decoration: none;
+    }
+}
+
+.vi-ui.cards {
+    .vi-ui.card {
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+
+        .image, .content, .extra.content {
+            background: #F4F4F4;
+            border-top: none;
+            border-bottom: none;
+        }
+
+        .image {
+            padding: 7px 10px;
+        }
+
+        .header {
+            margin: 15px 0;
+            font-size: 18px !important;
+            font-weight: 400 !important;
+        }
+
+        .description {
+            font-size: 14px;
+        }
+
+        .button {
+            padding: 5px 15px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 16px;
+            height: 26px;
+            border-radius: 8px;
+
+            &.loading:after, &.loading:before {
+                width: 1em;
+                height: 1em;
+            }
+        }
+    }
+}
+
+.vi-ui.form .vi-ui.depart-email-links .field {
+    margin: 1em 0;
+}
+
+.wrapper.depart {
+    h2 {
+        font-size: 23px;
+        font-weight: 400;
+    }
+}
